@@ -15,10 +15,10 @@
 
 요약하면,
 
-1. 다운로드 받은 파일 압축 해제
-2. **contents**라는 이름의 압축 파일의 압축 해제
-3. 압축 해제로 나타난 폴더를 원하는 위치에 복사
-4. **SpringToolSuite4** 라는 이름의 응용프로그램을 실행
+> 1. 다운로드 받은 파일 압축 해제
+> 2. **contents**라는 이름의 압축 파일의 압축 해제
+> 3. 압축 해제로 나타난 폴더를 원하는 위치에 복사
+> 4. **SpringToolSuite4** 라는 이름의 응용프로그램을 실행
 
 ### MySQL
 
@@ -34,13 +34,13 @@ MSI Installer를 실행시켜 설치를 진행한다. 이때, **Choosing a Setup
 
 Requirements의 설치가 끝나면 본격적으로 설치를 한다. 설치 후 MySQL Server를 구성하는 단계가 나타난다.
 
-- High Availability (기본 설정 그대로) : Standalone MySQL Server...
-- Type and Networking (기본 설정 그대로)
-  - Config Type : Development Computer
-  - Connectivity : TCP/IP, 3306 Port, 33060 X Protocol Port, Open Windows Firewall ports for network access
-- Authentication Method (기본 설정 그대로) : Use Strong...
-- Accounts and Roles : 비밀번호 입력 (상관 없음), User Accounts 추가하지 않음
-- Windows Service (기본 설정 그대로) : name의 경우 편한 것으로
+> - High Availability (기본 설정 그대로) : Standalone MySQL Server...
+> - Type and Networking (기본 설정 그대로)
+>   - Config Type : Development Computer
+>   - Connectivity : TCP/IP, 3306 Port, 33060 X Protocol Port, Open Windows Firewall ports for network access
+> - Authentication Method (기본 설정 그대로) : Use Strong...
+> - Accounts and Roles : 비밀번호 입력 (상관 없음), User Accounts 추가하지 않음
+> - Windows Service (기본 설정 그대로) : name의 경우 편한 것으로
 
 MySQL Router 구성의 경우 바로 Finish를 눌러 끝낸다.
 
