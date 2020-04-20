@@ -45,3 +45,15 @@ Requirements의 설치가 끝나면 본격적으로 설치를 한다. 설치 후
 MySQL Router 구성의 경우 바로 Finish를 눌러 끝낸다.
 
 Samples and Examples 구성의 경우 비밀번호를 입력해 연결을 시도해본다.
+
+---
+
+## STS4에서 프로젝트 불러오기
+
+이 Repository를 clone 하게 되면, **web > PetitionVisualizer** 폴더가 있는 것을 확인할 수 있다.
+
+1. STS4에서 좌측 상단 메뉴에 "File - **Open Projects from File System**" 선택
+2. "Import source" 옆 "**Directory...**"를 선택해 **PetitionVisualizer 폴더**를 선택
+3. Finish
+
+오른쪽 하단에 Progress bar를 보며 초기화가 끝나기를 기다린다. 👏
