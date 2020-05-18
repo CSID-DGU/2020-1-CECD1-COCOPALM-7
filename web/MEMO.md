@@ -19,7 +19,7 @@
 
 ## STS4
 
-**Spring Tools 4 (4.6.0 Release)**는 Spring 기반 엔터프라이즈 애플리케이션 개발을 위한 지원을 제공한다.
+**Spring Tools 4 (4.6.0 Release)** 는 Spring 기반 엔터프라이즈 애플리케이션 개발을 위한 지원을 제공한다.
 
 ### 설치 과정 (Windows)
 
