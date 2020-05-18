@@ -14,7 +14,7 @@ public class NewPetitionController {
 	@RequestMapping("/")
 	public String Home() {
 		// @Slfj4로 생성된 log 객체 이용해서 log 남김
-		log.info("log testing !");
+		log.info("[ / ] 경로 매핑!");
 		
 		// newPetition.jsp 반환
 		return "newPetition";
