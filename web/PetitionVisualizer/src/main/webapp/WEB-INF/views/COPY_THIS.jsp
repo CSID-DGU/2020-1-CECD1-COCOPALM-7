@@ -6,8 +6,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<jsp:include page="commonHead.jsp" />
-	<title><%=pageTitle%></title>
+<jsp:include page="commonHead.jsp" />
+<title><%=pageTitle%></title>
 </head>
 
 <body>
@@ -32,6 +32,8 @@
 	<!--------------------------------------------------------->
 	<!------------------ Scripts are here ! ------------------->
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+	<script src="js/billboard.min.js"></script>
 	<script src="js/page-common.js"></script>
 	<!--------------------------------------------------------->
 </body>
