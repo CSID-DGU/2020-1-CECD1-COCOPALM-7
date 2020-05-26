@@ -17,8 +17,8 @@
     <%@ include file="../sideNavigation.jsp" %>
     <%------------------------- Main -------------------------%>
     <div id="main">
-      <%-- 상단 (사이드 바 오픈 버튼, 페이지 제목, 검색창) -%>
-      <%@ include file="commonTop.jsp" %>
+      <%-- 상단 (사이드 바 오픈 버튼, 페이지 제목, 검색창) --%>
+      <%@ include file="../commonTop.jsp" %>
       <%----------------------------------------------------%>
       <div class="columns">
         <div class="column">first column</div>
