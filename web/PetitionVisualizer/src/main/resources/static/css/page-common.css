@@ -4,10 +4,6 @@
 body,
 html {
   font-family: "Noto Sans KR", sans-serif;
-}
-
-html,
-body {
   font-size: 16px;
   margin: 0;
 }
@@ -86,15 +82,65 @@ body {
   padding: 16px;
 }
 
-#pageTitle {
+.page-title {
   font-size: 20px;
   font-weight: 700;
 }
 
-.primary-text {
+.is-purple {
   color: #6c5ce7;
+}
+
+.is-grey {
+  color: #777;
 }
 
 .bold-text {
   font-weight: 700;
+}
+
+.xlarge-text {
+  font-size: 24px;
+}
+
+.large-text {
+  font-size: 18px;
+}
+
+.small-text {
+  font-size: 12px;
+}
+
+.buttons.are-small .button:not(.is-normal):not(.is-medium):not(.is-large) {
+  border-radius: 6px;
+}
+
+.button.is-purple {
+  color: #fff;
+  background-color: #6c5ce7;
+  border: none;
+}
+
+.button.is-purple.is-outlined {
+  color: #6c5ce7;
+  background-color: #fff;
+  border: #6c5ce7 solid 1px;
+}
+
+.margin-bottom-large {
+  margin-bottom: 32px;
+}
+
+.margin-bottom {
+  margin-bottom: 16px;
+}
+
+.margin-bottom-small {
+  margin-bottom: 8px;
+}
+
+.in-a-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
