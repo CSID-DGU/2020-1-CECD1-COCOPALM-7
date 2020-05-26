@@ -7,14 +7,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <%@ include file="commonHead.jsp" %>
+    <%@ include file="../commonHead.jsp" %>
     <title>
       <%=pageTitle%>
     </title>
   </head> 
 
   <body>
-    <%@ include file="sideNavigation.jsp" %>
+    <%@ include file="../sideNavigation.jsp" %>
     <%------------------------- Main -------------------------%>
     <div id="main">
       <%-- 상단 (사이드 바 오픈 버튼, 페이지 제목, 검색창) -%>
