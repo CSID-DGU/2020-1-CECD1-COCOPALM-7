@@ -11,6 +11,6 @@ public class KeywordDetailController {
 	@RequestMapping("/keyword")
 	public String Keyword() {
 		log.info("[ /keyword ] 매핑!");
-		return "keywordDetail";
+		return "keywordDetail/index";
 	}
 }

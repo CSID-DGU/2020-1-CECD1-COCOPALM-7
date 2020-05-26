@@ -17,6 +17,6 @@ public class NewPetitionController {
 		log.info("[ / ] 경로 매핑!");
 		
 		// newPetition.jsp 반환
-		return "newPetition";
+		return "newPetition/index";
 	}
 }
