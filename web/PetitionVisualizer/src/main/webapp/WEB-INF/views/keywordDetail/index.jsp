@@ -3,12 +3,13 @@
 	String keyword = "코로나";
 	String pageTitlePrefix = keyword;
 	String pageTitleSuffix = "관련 청원 트렌드";
-	String pageTitle = pageTitlePrefix + pageTitleSuffix;
+	String pageTitle = pageTitlePrefix + " " + pageTitleSuffix;
 %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<%@ include file="../commonHead.jsp" %>
+		<link rel="stylesheet" href="css/keywordDetail.css" />
 		<title><%=pageTitle%></title>
 	</head>
 	
@@ -28,7 +29,10 @@
 				<div class="column is-one-quarter margin-bottom-large">
 					<%@ include file="oldPetitionsKeywordTotal.jsp" %>
 				</div>
-				<div class="column">Third column</div>
+				<%-- 관련 최신 뉴스 --%>
+				<div class="column is-one-quarter margin-bottom-large">
+					<%@ include file="keywordRelatedNews.jsp" %>
+				</div>
 			</div>
 			<%---------------------- 다음 줄 ----------------------%>
 			<div class="columns">
