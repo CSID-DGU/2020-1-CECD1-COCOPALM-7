@@ -30,13 +30,15 @@
 					<%@ include file="oldPetitionsKeywordTotal.jsp" %>
 				</div>
 				<%-- 관련 최신 뉴스 --%>
-				<div class="column is-one-quarter margin-bottom-large">
+				<div class="column margin-bottom-large">
 					<%@ include file="keywordRelatedNews.jsp" %>
 				</div>
 			</div>
 			<%---------------------- 다음 줄 ----------------------%>
 			<div class="columns">
-				<div class="column">fourth column</div>
+				<div class="column margin-bottom-large">
+					<%@ include file="keywordBestPetitions.jsp" %>
+				</div>
 				<div class="column">fifth column</div>
 			</div>
 		</div>
