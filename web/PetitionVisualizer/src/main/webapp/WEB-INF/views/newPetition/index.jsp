@@ -39,6 +39,7 @@
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="js/billboard.min.js"></script>
     <script src="js/page-common.js"></script>
+    <script src="js/newPetitionDetail.js"></script>
     <%--------------------------------------------------------%>
   </body>
 </html>

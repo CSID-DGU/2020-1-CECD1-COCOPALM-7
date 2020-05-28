@@ -14,3 +14,5 @@
         <button class="button is-purple is-outlined">전체</button>
     </div>
 </div>
+
+<div id="newPetitionTopChart"></div>
