@@ -25,7 +25,10 @@
         <div class="column margin-bottom-large">
 			<%@ include file="periodTop3Keyword.jsp" %>        
         </div>
-        <div class="column">Second column</div>
+        <%--키워드 top3 각각의 그래프 --%>
+        <div class="column margin-bottom-small">
+        	<%@ include file="periodTop3EachKeyword.jsp" %>
+        </div>
         <div class="column">Third column</div>
       </div>
       <div class="columns">
