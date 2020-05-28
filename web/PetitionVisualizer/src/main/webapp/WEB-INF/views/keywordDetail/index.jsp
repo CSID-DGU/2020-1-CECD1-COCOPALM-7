@@ -3,12 +3,14 @@
 	String keyword = "코로나";
 	String pageTitlePrefix = keyword;
 	String pageTitleSuffix = "관련 청원 트렌드";
-	String pageTitle = pageTitlePrefix + pageTitleSuffix;
+	String pageTitle = pageTitlePrefix + " " + pageTitleSuffix;
 %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<%@ include file="../commonHead.jsp" %>
+		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+		<link rel="stylesheet" href="css/keywordDetail.css" />
 		<title><%=pageTitle%></title>
 	</head>
 	
@@ -28,12 +30,19 @@
 				<div class="column is-one-quarter margin-bottom-large">
 					<%@ include file="oldPetitionsKeywordTotal.jsp" %>
 				</div>
-				<div class="column">Third column</div>
+				<%-- 관련 최신 뉴스 --%>
+				<div class="column margin-bottom-large">
+					<%@ include file="keywordRelatedNews.jsp" %>
+				</div>
 			</div>
 			<%---------------------- 다음 줄 ----------------------%>
 			<div class="columns">
-				<div class="column">fourth column</div>
-				<div class="column">fifth column</div>
+				<div class="column margin-bottom-large">
+					<%@ include file="keywordBestPetitions.jsp" %>
+				</div>
+				<div class="column">
+					<%@ include file="keywordRelatedPetitions.jsp" %>
+				</div>
 			</div>
 		</div>
 		<%--------------------------------------------------------%>
@@ -41,6 +50,7 @@
 		<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 		<script src="https://d3js.org/d3.v5.min.js"></script>
 		<script src="js/billboard.min.js"></script>
+		<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
 		<script src="js/page-common.js"></script>
 		<script src="js/keywordDetail.js"></script>
 		<%--------------------------------------------------------%>

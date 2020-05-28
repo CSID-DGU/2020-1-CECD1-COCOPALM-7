@@ -48,4 +48,20 @@ $(document).ready(function () {
     },
     bindto: "#newPetitionsKeywordChart",
   });
+
+  // 관련 청원 목록을 임시로 DataTable 라이브러리로 처리하였음
+  // sampleList.json 파일에 임시 데이터 넣어둠
+  var table = $("#example").DataTable({
+    pageLength: 5,
+    lengthChange: false,
+    info: false,
+    searching: false,
+    ajax: "js/sampleList.json",
+    columns: [
+      { data: "제목" },
+      { data: "카테고리", width: "15%" },
+      { data: "동의 수", width: "15%" },
+      { data: "시작일", width: "15%" },
+    ],
+  });
 });

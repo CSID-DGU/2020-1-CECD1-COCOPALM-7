@@ -61,6 +61,7 @@ html {
   color: #d6d3e8;
 }
 
+/* 높이가 450px 이하인 경우, 글씨 크기 조절 */
 @media all and (max-height: 450px) {
   .side-nav > a {
     font-size: 16px;
@@ -70,6 +71,7 @@ html {
   }
 }
 
+/* 1025px 이상인 화면에서 사이드바 버튼 숨기기 */
 @media all and (min-width: 1025px) {
   #sideNavOpenButton {
     display: none;
@@ -143,4 +145,12 @@ html {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+/* 하단 margin을 크게 둔 column은, 너비 768px 이하에서, 하단 구분선이 생김 */
+@media all and (max-width: 768px) {
+  .column.margin-bottom-large {
+    border-bottom: 2px solid #f7f7f7;
+    padding-bottom: 32px;
+  }
 }
