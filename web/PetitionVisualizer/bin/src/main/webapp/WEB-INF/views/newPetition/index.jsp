@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
 <%
   // 페이지에 보여지는 제목 중 앞에 보라색 글씨 부분
-  String pageTitlePrefix = "만료 이전"; 
+  String pageTitlePrefix = ""; 
   // 페이지에 보여지는 제목 중 앞에 검은색 글씨 부분
-  String pageTitleSuffix = "청원 트렌드"; 
+  String pageTitleSuffix = "만료 이전 청원 트렌드"; 
   String pageTitle = pageTitlePrefix + pageTitleSuffix;
 %>
 <!DOCTYPE html>
@@ -21,10 +21,7 @@
       <%@ include file="../commonTop.jsp" %>
       <%----------------------------------------------------%>
       <div class="columns">
-      	<%--기간 내 화제 키워드 top3 --%>
-        <div class="column margin-bottom-large">
-			<%@ include file="periodTop3Keyword.jsp" %>        
-        </div>
+        <div class="column">first column</div>
         <div class="column">Second column</div>
         <div class="column">Third column</div>
       </div>

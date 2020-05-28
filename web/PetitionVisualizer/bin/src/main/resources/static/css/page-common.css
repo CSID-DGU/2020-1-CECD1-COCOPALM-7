@@ -1,0 +1,146 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css");
+
+body,
+html {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 16px;
+  margin: 0;
+}
+
+/* SIDE NAVIGATION MENU */
+.side-nav {
+  height: 100%;
+  width: 60px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #6c5ce7;
+  overflow-x: hidden;
+  transition: 0.5s;
+  display: flex;
+  flex-direction: column;
+}
+
+/* NAVIGATION ITEM */
+.side-nav > a {
+  padding: 16px 0 16px;
+  text-decoration: none;
+  text-align: center;
+  font-size: 18px;
+  color: #d6d3e8;
+  display: block;
+}
+
+/* TO REDUCE SPACE BETWEEN ICON AND TEXT */
+.side-nav > a > ul > li {
+  line-height: 1;
+}
+
+/* SIZE OF FONT BELOW ICON */
+.side-nav > a > ul > li > span {
+  font-size: 12px;
+}
+
+/* HOVER ON NAVIGATION ITEM */
+.side-nav > a:hover {
+  color: #fff;
+}
+
+/* SIDE NAV OPEN BUTTON */
+#sideNavOpenButton {
+  padding-right: 16px;
+  font-size: 18px;
+  cursor: pointer;
+  color: #6c5ce7;
+}
+
+/* HOVER ON SIDE NAV OPEN BUTTON */
+#sideNavOpenButton:hover {
+  color: #d6d3e8;
+}
+
+@media all and (max-height: 450px) {
+  .side-nav > a {
+    font-size: 16px;
+  }
+  .side-nav > a > ul > li > span {
+    font-size: 12px;
+  }
+}
+
+@media all and (min-width: 1025px) {
+  #sideNavOpenButton {
+    display: none;
+  }
+}
+
+#main {
+  margin-left: 60px;
+  transition: margin-left 0.5s;
+  padding: 16px;
+}
+
+.page-title {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.is-purple {
+  color: #6c5ce7;
+}
+
+.is-grey {
+  color: #777;
+}
+
+.bold-text {
+  font-weight: 700;
+}
+
+.xlarge-text {
+  font-size: 24px;
+}
+
+.large-text {
+  font-size: 18px;
+}
+
+.small-text {
+  font-size: 12px;
+}
+
+.buttons.are-small .button:not(.is-normal):not(.is-medium):not(.is-large) {
+  border-radius: 6px;
+}
+
+.button.is-purple {
+  color: #fff;
+  background-color: #6c5ce7;
+  border: none;
+}
+
+.button.is-purple.is-outlined {
+  color: #6c5ce7;
+  background-color: #fff;
+  border: #6c5ce7 solid 1px;
+}
+
+.margin-bottom-large {
+  margin-bottom: 32px;
+}
+
+.margin-bottom {
+  margin-bottom: 16px;
+}
+
+.margin-bottom-small {
+  margin-bottom: 8px;
+}
+
+.in-a-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
