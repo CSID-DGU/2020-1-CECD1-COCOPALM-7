@@ -19,18 +19,28 @@
     <div id="main">
       <%-- 상단 (사이드 바 오픈 버튼, 페이지 제목, 검색창) --%>
       <%@ include file="../commonTop.jsp" %>
-      <%----------------------------------------------------%>
+      
+      <%-------------------------페이지 상단 -------------------------%>
       <div class="columns">
+      
       	<%--기간 내 화제 키워드 top3 --%>
         <div class="column margin-bottom-large">
 			<%@ include file="periodTop3Keyword.jsp" %>        
         </div>
+        
         <%--키워드 top3 각각의 그래프 --%>
         <div class="column margin-bottom-small">
         	<%@ include file="periodTop3EachKeyword.jsp" %>
         </div>
-        <div class="column">Third column</div>
+        
+        <%--TOP3 키워드 요약 --%>
+        <div class="column margin-bottom-large">
+			<%@ include file="newPetitionSummary.jsp" %>
+        </div>
+        
       </div>
+      
+      <%-------------------------페이지 하단 -------------------------%>
       <div class="columns">
         <div class="column">fourth column</div>
         <div class="column">fifth column</div>
