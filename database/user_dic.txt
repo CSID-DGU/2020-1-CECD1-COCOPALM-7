@@ -1,0 +1,101 @@
+민식이	NNP
+민식이법	NNP
+n번방	NNP
+N번방	NNP
+박사방	NNP
+찜방	NNP
+코로나19	NNP
+자가격리	NNP
+자가격리자	NNP
+채널A	NNP
+TV조선	NNP
+
+오덕식	NP
+태영호	NNP
+지성호	NNP
+정순균	NNP
+
+거소	NNP
+식약처	NNP
+방통위	NNP
+방통위원장	NNP
+개소세	NNP
+양도세	NNP
+보도자	NNP
+재산정	NNP
+확진자	NNP
+거부자	NNP
+전파자	NNP
+체납자	NNP
+먹튀	NNP
+거래소	NNP
+갑질	NNP
+불법체류자	NNP
+성범죄자	NNP
+성착취	NNP
+성추행	NNP
+수급자	NNP
+노무사	NNP
+유소년	NNP
+돌봄쿠폰	NNP
+방과후	NNP
+줌바댄스	NNP
+줌바	NNP
+휴무	NNP
+
+2011년	NNP
+11년	NNP
+2012년	NNP
+12년
+2013년	NNP
+13년	NNP
+2014년	NNP
+14년	NNP
+2015년	NNP
+15년	NNP
+2016년	NNP
+16년	NNP
+2017년	NNP
+17년	NNP
+2018년	NNP
+18년	NNP
+2019년	NNP
+19년	NNP
+2020년	NNP
+20년	NNP
+
+1차	NNP
+2차	NNP
+3차	NNP
+
+1회차	NNP
+2회차	NNP
+3회차	NNP
+
+스쿨포유	NNP
+스쿨존	NNP
+초중고	NNP
+휴원	NNP
+중1	NNP
+중2	NNP
+중3	NNP
+고1	NNP
+고2	NNP
+고3	NNP
+
+3대	NNP
+4대	NNP
+10대	NNP
+19대	NNP
+20대	NNP
+21대	NNP
+30대	NNP
+40대	NNP
+50대	NNP
+60대	NNP
+
+혹한기	NNP
+혹서기	NNP
+
+금투	NNP
+신한금투	NNP
