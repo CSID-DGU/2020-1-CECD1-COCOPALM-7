@@ -22,7 +22,7 @@
   </a>
   <%-- 재생 버튼을 아래에 배치하기 위한 div --%>
   <div style="flex: 1;"></div>
-  <a href="/play">
+  <a href="#">
     <ul>
       <li><i class="fas fa-play"></i></li>
       <li><span>재생</span></li>
