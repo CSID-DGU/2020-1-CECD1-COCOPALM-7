@@ -97,6 +97,10 @@ html {
   color: #777;
 }
 
+.is-black {
+  color: #000;
+}
+
 .bold-text {
   font-weight: 700;
 }
