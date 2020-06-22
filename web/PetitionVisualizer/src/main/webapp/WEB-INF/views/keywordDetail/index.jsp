@@ -21,7 +21,7 @@
 			<%-- 상단 (사이드 바 오픈 버튼, 페이지 제목, 검색창) --%>
 			<%@ include file="../commonTop.jsp" %>
 			<%----------------------- 첫 줄 -----------------------%>
-			<div class="columns">
+			<div class="columns is-variable is-8">
 				<%-- 만료 이전 청원 및 동의 추이 --%>
 				<div class="column margin-bottom-large">
 					<%@ include file="newPetitionsKeywordTrend.jsp" %>
@@ -36,7 +36,7 @@
 				</div>
 			</div>
 			<%---------------------- 다음 줄 ----------------------%>
-			<div class="columns">
+			<div class="columns is-variable is-8">
 				<div class="column margin-bottom-large">
 					<%@ include file="keywordBestPetitions.jsp" %>
 				</div>
