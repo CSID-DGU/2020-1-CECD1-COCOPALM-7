@@ -1,0 +1,24 @@
+.make-circle-centered {
+  display: flex;
+  justify-content: center;
+}
+.circle {
+  background-color: #fff;
+  border: 3px solid #6c5ce7;
+  height: 100px;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.score-bar {
+  display: inline-block;
+  height: 3px;
+  background-color: #6c5ce7;
+  vertical-align: middle;
+  margin-right: 8px;
+}
