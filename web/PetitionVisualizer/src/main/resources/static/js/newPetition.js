@@ -170,6 +170,7 @@ $(document).ready(function () {
     var wrapper = document.createElement("p");
 
     var keywordArea = document.createElement("a");
+    keywordArea.href = "/keyword";
     keywordArea.className = "small-text bold-text is-black";
     keywordArea.innerHTML = index + 1 + "&nbsp;&nbsp;" + keywordInfo.keyword;
 
