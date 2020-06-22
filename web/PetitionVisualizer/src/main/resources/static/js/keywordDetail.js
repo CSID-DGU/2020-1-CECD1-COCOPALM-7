@@ -59,9 +59,9 @@ $(document).ready(function () {
     ajax: "js/sampleList.json",
     columns: [
       { data: "제목" },
-      { data: "카테고리", width: "15%" },
-      { data: "동의 수", width: "15%" },
-      { data: "시작일", width: "15%" },
+      { data: "카테고리", width: "17%" },
+      { data: "동의 수", width: "17%" },
+      { data: "시작일", width: "17%" },
     ],
   });
 });
