@@ -4,7 +4,7 @@
 	
 	<%--TOP1 키워드 --%>
 	<div>
-		<span>코로나</span>
+		<a href="/keyword" class="is-grey">코로나</a>
 		<div id="newPetitionTop1Chart" style="float:right;"></div>	
 		<br>
 		<span class="xlarge-text bold-text">93</span>
@@ -13,7 +13,7 @@
 	
 	<%--TOP2 키워드 --%>
 	<div>
-		<span>이태원</span>
+		<a href="/keyword" class="is-grey">이태원</a>
 		<div id="newPetitionTop2Chart" style="float:right;"></div>	
 		<br>
 		<span class="xlarge-text bold-text">89</span>
@@ -22,7 +22,7 @@
 	
 	<%--TOP3 키워드 --%>
 	<div>
-		<span>공무원</span>
+		<a href="/keyword" class="is-grey">공무원</a>
 		<div id="newPetitionTop3Chart" style="float:right;"></div>	
 		<br>
 		<span class="xlarge-text bold-text">81</span>
