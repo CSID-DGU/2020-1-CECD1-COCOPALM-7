@@ -1,3 +1,15 @@
 .tag.is-narrow {
   padding-left: 1px;
 }
+
+#categoryTrendChart .bold-line {
+  stroke-width: 4px;
+}
+
+.score-bar {
+  display: inline-block;
+  height: 3px;
+  background-color: #6c5ce7;
+  vertical-align: middle;
+  margin-right: 8px;
+}

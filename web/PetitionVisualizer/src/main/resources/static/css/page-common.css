@@ -133,16 +133,32 @@ html {
   border: #6c5ce7 solid 1px;
 }
 
+.hover-purple:hover {
+  color: #6c5ce7;
+}
+
 .margin-bottom-large {
   margin-bottom: 32px;
+}
+
+.margin-top-large {
+  margin-top: 32px;
 }
 
 .margin-bottom {
   margin-bottom: 16px;
 }
 
+.margin-top {
+  margin-top: 16px;
+}
+
 .margin-bottom-small {
   margin-bottom: 8px;
+}
+
+.margin-top-small {
+  margin-top: 8px;
 }
 
 .in-a-row {

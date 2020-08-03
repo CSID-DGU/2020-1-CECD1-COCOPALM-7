@@ -3,6 +3,7 @@
   String pageTitlePrefix = ""; 
   String pageTitleSuffix = "카테고리 별 청원 트렌드"; 
   String pageTitle = pageTitlePrefix + pageTitleSuffix;
+  String category = "정치개혁";
 %>
 <!DOCTYPE html>
 <html>
@@ -23,11 +24,13 @@
       <%----------------------------------------------------%>
 
       <%-- 카테고리 목록 --%>
-      <div class="columns">
+      <div class="columns margin-top-large">
         <div class="column">
           <%@ include file="./categoryTags.jsp" %>
         </div>
       </div>
+
+      <div class="margin-bottom-large"></div>
 
       <%-- 타일 구조 필요 --%>
       <div class="tile is-ancestor">
@@ -77,6 +80,7 @@
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="js/billboard.min.js"></script>
     <script src="js/page-common.js"></script>
+		<script src="js/category.js"></script>
     <%--------------------------------------------------------%>
   </body>
 </html>

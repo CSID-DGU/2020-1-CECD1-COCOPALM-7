@@ -7,6 +7,21 @@
 - 변수 필요하지 않음
 --%>
 
-<div class="content">
-  청원 수 합이 가장 큰 키워드
+<div class="content margin-top-large">
+  <div class="columns is-mobile is-vcentered">
+    <div class="column is-half has-text-right">
+      <span class="bold-text is-grey">청원 수 합이</span>
+      <br/>
+      <span class="bold-text is-grey">가장 큰 키워드</span>
+    </div>
+    <div class="column is-half has-text-left">
+      <span class="bold-text is-purple">코로나</span>
+      <br/>
+    </div>
+  </div>
+  <div class="columns is-vcentered">
+    <div class="column is-full has-text-centered">
+      <span class="xlarge-text bold-text">9,876건</span>
+    </div>
+  </div>
 </div>

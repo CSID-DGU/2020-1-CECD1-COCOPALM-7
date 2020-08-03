@@ -7,6 +7,10 @@
 - 변수 필요하지 않음
 --%>
 
-<div class="content">
-  카테고리 화제 키워드
+<%-- 제목만큼의 공백 할당 --%>
+<div class="margin-bottom">
+    <span class="large-text bold-text"><%=category %> 화제 키워드</span>
 </div>
+
+<%-- 화제 키워드 리스트 --%>
+<div id="categoryIssuedKeywordsRanking"></div>

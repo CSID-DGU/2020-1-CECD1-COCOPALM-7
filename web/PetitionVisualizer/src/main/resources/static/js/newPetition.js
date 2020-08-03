@@ -171,7 +171,7 @@ $(document).ready(function () {
 
     var keywordArea = document.createElement("a");
     keywordArea.href = "/keyword";
-    keywordArea.className = "small-text bold-text is-black";
+    keywordArea.className = "small-text bold-text is-black hover-purple";
     keywordArea.innerHTML = index + 1 + "&nbsp;&nbsp;" + keywordInfo.keyword;
 
     var newLine = document.createElement("br");

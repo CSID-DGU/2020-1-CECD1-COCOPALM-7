@@ -8,5 +8,14 @@
 --%>
 
 <div class="content">
-    카테고리 청원 및 동의 추이
+    <div class="columns">
+        <div class="column is-full margin-bottom-large">
+            <div class="margin-bottom">
+                <span class="large-text bold-text is-purple"><%=category %></span> 
+                <span class="large-text bold-text">&nbsp;카테고리 청원 및 동의 추이</span>
+            </div>
+
+            <div id="categoryTrendChart"></div>
+        </div>
+    </div>
 </div>
