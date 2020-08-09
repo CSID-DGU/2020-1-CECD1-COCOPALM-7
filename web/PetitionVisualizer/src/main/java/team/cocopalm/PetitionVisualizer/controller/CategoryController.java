@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class CategoryController {
     @RequestMapping("/category")
-    public String Keyword() {
+    public String Category() {
         log.info("[ /category ] 매핑!");
         return "category/index";
     }
