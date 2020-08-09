@@ -64,4 +64,15 @@ $(document).ready(function () {
       { data: "시작일", width: "17%" },
     ],
   });
+
+  $.ajax({
+    url: API.KEYWORD.BEST_PETITIONS,
+    method: "GET",
+  })
+    .done((res) => {
+      console.log(res);
+      $("#mostAgreeNewPetition").text(res[0].title);
+      $("#mostAgreeOldPetition").text(res[1].title);
+    })
+    .fail((err) => console.log(err));
 });

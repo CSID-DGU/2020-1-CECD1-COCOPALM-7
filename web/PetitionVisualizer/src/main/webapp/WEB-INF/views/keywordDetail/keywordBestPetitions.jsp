@@ -15,7 +15,7 @@
 
 <div class="in-a-row margin-bottom-small">
     <span class="icon is-purple" style="align-self: start;"><i class="fas fa-angle-right"></i></i></span>
-    <span class="bold-text">코로나19로 인한 다른 긴급한 환자분들 및 그 가족분들을 어려움을 들어주세요</span>
+    <span class="bold-text" id="mostAgreeNewPetition"></span>
 </div>
 
 <div class="margin-bottom">
@@ -35,7 +35,7 @@
 
 <div class="in-a-row margin-bottom-small">
     <span class="icon is-purple" style="align-self: start;"><i class="fas fa-angle-right"></i></i></span>
-    <span class="bold-text">코로나19로 위기에 처한 국민들을위해 국회의원들의 월급반납 또는 삭감을 건의합니다</span>
+    <span class="bold-text" id="mostAgreeOldPetition"></span>
 </div>
 
 <div class="margin-bottom">
