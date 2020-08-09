@@ -165,6 +165,7 @@ $(document).ready(function () {
     bindto: "#keywordGaugeChart",
   });
 
+  // 주석은 category.js 참고
   var rankingArea = $("#issuedKeywordsRanking");
   sampleRanking.forEach((keywordInfo, index) => {
     var wrapper = document.createElement("p");
