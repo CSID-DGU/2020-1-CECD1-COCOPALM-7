@@ -5,7 +5,8 @@ import lombok.Data;
 
 @Data
 @Builder
-public class Category {
-	private int category_id;
-	private String name;
+public class Keyword {
+	private String keyword;
+	private int agree_sum;
+	private int post_sum;
 }
