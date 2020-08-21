@@ -66,7 +66,7 @@ $(document).ready(function () {
   });
 
   $.ajax({
-    url: API.KEYWORD.BEST_PETITIONS,
+    url: API.KEYWORD.BEST_PETITIONS + "?keyword=코로나",
     method: "GET",
   })
     .done((res) => {
