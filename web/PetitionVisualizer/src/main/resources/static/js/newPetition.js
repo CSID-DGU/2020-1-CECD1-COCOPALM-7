@@ -41,19 +41,85 @@ var sampleRanking = [
   },
 ];
 
-$(document).ready(function () {
+$(document).ready(async function () {
+  // 먼저 top 3 키워드 가져오고 시작함
+  var keywordTop1, keywordTop2, keywordTop3;
+  await $.ajax({
+    url: API.NEW_PETITION.KEYWORD_TOP_3,
+    method: "GET",
+  })
+    .done((res) => {
+      keywordTop1 = res[0];
+      keywordTop2 = res[1];
+      keywordTop3 = res[2];
+      $(".keywordTop1").text(keywordTop1.keyword);
+      $(".keywordTop1").attr(
+        "href",
+        "/keyword/" + encodeURI(keywordTop1.keyword)
+      );
+      $("#keywordTop1Score").text(keywordTop1.score);
+
+      $(".keywordTop2").text(keywordTop2.keyword);
+      $(".keywordTop2").attr(
+        "href",
+        "/keyword/" + encodeURI(keywordTop2.keyword)
+      );
+      $("#keywordTop2Score").text(keywordTop2.score);
+
+      $(".keywordTop3").text(keywordTop3.keyword);
+      $(".keywordTop3").attr(
+        "href",
+        "/keyword/" + encodeURI(keywordTop3.keyword)
+      );
+      $("#keywordTop3Score").text(keywordTop3.score);
+    })
+    .fail((err) => console.log(err));
+  // =====================================================================
+
+  var mostPostDay,
+    allNotExpiredPostCount,
+    keywordNotExpiredAgreeSum,
+    keywordNotExpiredPostCount;
+
+  await $.ajax({
+    url:
+      API.NEW_PETITION.META_DATA + "?keyword=" + encodeURI(keywordTop1.keyword),
+    method: "GET",
+  })
+    .done((res) => {
+      mostPostDay = res.mostPostDay;
+      allNotExpiredPostCount = res.allNotExpiredPostCount;
+      keywordNotExpiredAgreeSum = res.keywordNotExpiredAgreeSum;
+      keywordNotExpiredPostCount = res.keywordNotExpiredPostCount;
+      $("#mostPostDay").text(mostPostDay);
+      $("#allNotExpiredPostCount").text(allNotExpiredPostCount.format() + "건");
+      $("#keywordNotExpiredAgreeSum").text(
+        keywordNotExpiredAgreeSum.format() + "회"
+      );
+      $("#circleGraph").text(keywordNotExpiredAgreeSum);
+      $("#keywordNotExpiredPostCount").text(
+        keywordNotExpiredPostCount.format() + "건"
+      );
+    })
+    .fail((err) => console.log());
+  // =====================================================================
+
   //top3 전체 그래프
   var chart = bb.generate({
     data: {
       columns: [
-        ["코로나", 30, 200, 100, 400, 150, 250],
-        ["이태원", 50, 20, 10, 40, 15, 25],
-        ["공무원", 130, 150, 200, 300, 200, 100],
+        [keywordTop1.keyword, 30, 200, 100, 400, 150, 250],
+        [keywordTop2.keyword, 50, 20, 10, 40, 15, 25],
+        [keywordTop3.keyword, 130, 150, 200, 300, 200, 100],
       ],
+    },
+    color: {
+      pattern: ["#6c5ce7", "#2b73e0", "#2da3e3"],
     },
     size: { height: 280 },
     bindto: "#newPetitionTopChart",
   });
+  // =====================================================================
 
   //top3 각각 그래프
   var firstchart = bb.generate({
@@ -84,6 +150,7 @@ $(document).ready(function () {
       show: false,
     },
   });
+  // =====================================================================
 
   var secondchart = bb.generate({
     data: {
@@ -107,12 +174,13 @@ $(document).ready(function () {
     },
     legend: { show: false },
     color: {
-      pattern: ["#6c5ce7"],
+      pattern: ["#2b73e0"],
     },
     point: {
       show: false,
     },
   });
+  // =====================================================================
 
   var thirdchart = bb.generate({
     data: {
@@ -136,20 +204,21 @@ $(document).ready(function () {
     },
     legend: { show: false },
     color: {
-      pattern: ["#6c5ce7"],
+      pattern: ["#2da3e3"],
     },
     point: {
       show: false,
     },
   });
+  // =====================================================================
 
   var gaugeChart = bb.generate({
     data: {
-      columns: [["청원", 18]],
+      columns: [["청원", keywordNotExpiredPostCount]],
       type: "gauge",
     },
     gauge: {
-      max: 42,
+      max: allNotExpiredPostCount,
       label: {
         format: function (value, ratio) {
           return value + "건";
@@ -164,6 +233,7 @@ $(document).ready(function () {
     },
     bindto: "#keywordGaugeChart",
   });
+  // =====================================================================
 
   // 주석은 category.js 참고
   var rankingArea = $("#issuedKeywordsRanking");
@@ -171,7 +241,7 @@ $(document).ready(function () {
     var wrapper = document.createElement("p");
 
     var keywordArea = document.createElement("a");
-    keywordArea.href = "/keyword";
+    keywordArea.href = "/keyword/" + encodeURI(keywordInfo.keyword);
     keywordArea.className = "small-text bold-text is-black hover-purple";
     keywordArea.innerHTML = index + 1 + "&nbsp;&nbsp;" + keywordInfo.keyword;
 

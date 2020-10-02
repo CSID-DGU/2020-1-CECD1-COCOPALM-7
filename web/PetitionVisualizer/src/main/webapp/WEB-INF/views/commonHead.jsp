@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css"/>
 
 <%-- Billboard CSS --%>
-<link rel="stylesheet" href="css/billboard.css" />
+<link rel="stylesheet" href="/css/billboard.css" />
 
 <%-- 페이지 공통 CSS --%>
-<link rel="stylesheet" href="css/page-common.css" />
+<link rel="stylesheet" href="/css/page-common.css" />

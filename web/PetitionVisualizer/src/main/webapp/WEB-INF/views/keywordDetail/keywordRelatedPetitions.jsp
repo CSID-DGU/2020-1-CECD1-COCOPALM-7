@@ -8,23 +8,20 @@
 --%>
 
 <%-- 이 컬럼 제목 --%>
-<div class="in-a-row margin-bottom">
-    <span class="large-text bold-text" style="margin-right: 18px;">관련 청원 목록</span>
+<div class="in-a-row is-pulled-right">
     <%-- 만료 / 만료 이전 선택 --%>
     <div class="buttons are-small">
-        <button class="button is-purple">만료</button>
-        <button class="button is-purple is-outlined">만료 이전</button>
+        <button id="filterExpired" class="button is-purple">만료</button>
+        <button id="filterNotExpired" class="button is-purple is-outlined">만료 이전</button>
     </div>
 </div>
 
 <div>
-    <table id="example" class="display" style="width:100%">
+    <table id="relatedPetitions" class="hover" style="width:100%">
         <thead>
             <tr>
-                <th>제목</th>
-                <th>카테고리</th>
-                <th>동의 수</th>
-                <th>시작일</th>
+                <th>관련 청원 목록</th>
+                <th>만료 여부</th>
             </tr>
         </thead>
     </table>

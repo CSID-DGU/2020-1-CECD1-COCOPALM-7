@@ -15,4 +15,8 @@ public class CategoryService {
 	public List<Category> selectAll() throws Exception {
 		return mapper.selectAll(); 
 	}
+	
+	public String getCategory(int categoryNumber) throws Exception {
+		return mapper.selectCategory(categoryNumber);
+	}
 }

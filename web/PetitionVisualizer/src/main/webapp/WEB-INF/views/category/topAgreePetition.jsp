@@ -13,8 +13,8 @@
     </div>
     
     <div class="in-a-row margin-bottom-small">
-        <span class="icon is-purple" style="align-self: start;"><i class="fas fa-angle-right"></i></i></span>
-        <span class="bold-text">코로나19로 인한 다른 긴급한 환자분들 및 그 가족분들을 어려움을 들어주세요</span>
+        <span class="icon is-cate-${categoryNumber}" style="align-self: start;"><i class="fas fa-angle-right"></i></i></span>
+        <a href="#" class="bold-text is-black" id="bestPetitionTitle"></a>
     </div>
 
     <div class="margin-bottom-large">

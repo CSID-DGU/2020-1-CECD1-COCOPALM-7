@@ -15,7 +15,7 @@ html {
   position: fixed;
   z-index: 1;
   top: 0;
-  left: 0;
+  left: -60px;
   background-color: #6c5ce7;
   overflow-x: hidden;
   transition: 0.5s;
@@ -29,7 +29,7 @@ html {
   text-decoration: none;
   text-align: center;
   font-size: 18px;
-  color: #d6d3e8;
+  color: #ffffffda;
   display: block;
 }
 
@@ -61,6 +61,12 @@ html {
   color: #d6d3e8;
 }
 
+#main {
+  margin-left: 0px;
+  transition: margin-left 0.5s;
+  padding: 16px;
+}
+
 /* 높이가 450px 이하인 경우, 글씨 크기 조절 */
 @media all and (max-height: 450px) {
   .side-nav > a {
@@ -76,12 +82,12 @@ html {
   #sideNavOpenButton {
     display: none;
   }
-}
-
-#main {
-  margin-left: 60px;
-  transition: margin-left 0.5s;
-  padding: 16px;
+  #sideNav {
+    left: 0;
+  }
+  #main {
+    margin-left: 60px;
+  }
 }
 
 .page-title {

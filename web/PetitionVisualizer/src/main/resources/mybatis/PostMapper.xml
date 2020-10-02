@@ -2,17 +2,46 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="team.cocopalm.PetitionVisualizer.mapper.PostMapper">
 
-    <select id="selectMostAgreePetitionByKeyword" resultType="Post">
-    	SELECT * FROM post				-- post 테이블에서
-		WHERE 								-- keyword가 포함되어 있으며
-			title LIKE CONCAT('%', #{keyword}, '%') AND 	
-			is_new = #{isNew}				-- isNew(0:만료 / 1: 만료 이전)인 post 중에
-		ORDER BY agree_count DESC			-- 동의 수로 내림차순하여 
-		LIMIT 1								-- 1개 선택
+    <select id="selectMostAgreePetitionByKeyword" resultType="Post">		
+		SELECT p.post_id, p.category_id, p.title, p.is_new, p.start_date, p.end_date, p.agree_count
+		FROM post_keyword pk
+		INNER JOIN post p
+		ON pk.post_id = p.post_id
+		WHERE pk.keyword = #{keyword}
+			AND p.is_new = #{isNew}
+		ORDER BY p.agree_count DESC
+		LIMIT 1;
     </select>
     
-    <select id="test" resultType="String">
-    	SELECT #{keyword}
+    <select id="getStatusOfKeyword" resultType="Map">
+    	SELECT
+			COUNT(*) AS keywordCount,
+			SUM(AGREE_COUNT) AS sumAgreeCount,
+			MAX(AGREE_COUNT) AS maxAgreeCount
+		FROM post_keyword pk
+		INNER JOIN post p
+		ON pk.post_id = p.post_id
+		WHERE
+			pk.keyword = #{keyword}
+		    AND p.is_new = #{isNew};
     </select>
     
+    <select id="selectRelatedPetitions" resultType="Post">
+    	SELECT
+			p.post_id, p.category_id, p.title, p.is_new, p.start_date, p.end_date, p.agree_count
+		FROM post_keyword pk
+		INNER JOIN post p 
+		ON pk.post_id = p.post_id
+		WHERE
+			pk.keyword = #{keyword}
+		ORDER BY start_date DESC;
+    </select>
+    
+    <select id="selectBestCategoryPetition" resultType="Post">
+    	SELECT *
+		FROM post
+		WHERE category_id = #{categoryId}
+		ORDER BY agree_count DESC
+		LIMIT 1;
+    </select>
 </mapper>   

@@ -2,9 +2,81 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="team.cocopalm.PetitionVisualizer.mapper.KeywordMapper">
 
-    <select id="test"  resultType="Keyword">
-    	SELECT * FROM keyword
-    	LIMIT 100
+    <select id="isExist" resultType="int">
+    	SELECT COUNT(*) 
+    	FROM keyword
+    	WHERE keyword = #{keyword};
     </select>
     
+    <select id="getCountAllNotExpiredPost" resultType="Map">
+    	SELECT COUNT(DISTINCT p.post_id) AS allNotExpiredPostCount
+		FROM post_keyword pk
+		INNER JOIN post p
+		ON pk.post_id = p.post_id AND p.is_new = '1'
+    </select>
+    
+    <select id="getAggrKeywordNotExpiredPost" resultType="Map">
+		SELECT 
+			COUNT(DISTINCT p.post_id) AS keywordNotExpiredPostCount,
+		    SUM(p.agree_count) AS keywordNotExpiredAgreeSum
+		FROM post_keyword pk
+		INNER JOIN post p
+		ON pk.post_id = p.post_id AND p.is_new = '1' AND pk.keyword = #{keyword}
+    </select>
+    
+    <select id="keywordMostPostDay" resultType="Map">
+		SELECT 
+			LEFT(p.start_date, 10) AS mostPostDay
+		FROM post_keyword pk
+		INNER JOIN post p
+		ON 
+			pk.post_id = p.post_id AND 
+		    p.is_new = '1' AND 
+		    pk.keyword = #{keyword}
+		GROUP BY mostPostDay
+		ORDER BY COUNT(DISTINCT p.post_id) DESC
+		LIMIT 1;
+    </select> 
+    
+    <select id="selectKeywordTop3" resultType="Keyword">
+    	SELECT keyword, @rownum := @rownum-1 AS score
+		FROM (
+			SELECT 
+				pk.keyword
+			FROM post_keyword pk
+			INNER JOIN post p
+			ON pk.post_id = p.post_id AND p.is_new = '1'
+			GROUP BY pk.keyword
+			ORDER BY COUNT(p.post_id) DESC
+		) tbl, (SELECT @rownum := 100) AS R
+		LIMIT 3;
+    </select>
+    
+    <select id="selectCategoryMostPostKeyword" resultType="Keyword">
+    	SELECT COUNT(DISTINCT pc.post_id) AS post_sum, pk.keyword
+		FROM (
+			SELECT * 
+			FROM post 
+			WHERE category_id = #{categoryId}
+		) pc
+		INNER JOIN post_keyword pk
+		ON pc.post_id = pk.post_id
+		GROUP BY pk.keyword
+		ORDER BY post_sum DESC
+		LIMIT 1;
+    </select>
+    
+    <select id="selectCategoryMostAgreeKeyword" resultType="Keyword">
+		SELECT pk.keyword, SUM(pc.agree_count) AS agree_sum
+		FROM (
+			SELECT * 
+			FROM post 
+			WHERE category_id = #{categoryId}
+		) pc
+		INNER JOIN post_keyword pk
+		ON pc.post_id = pk.post_id
+		GROUP BY pk.keyword
+		ORDER BY agree_sum DESC
+		LIMIT 1;
+    </select>
 </mapper>   

@@ -17,10 +17,9 @@
         <span class="bold-text"><%=keyword%></span>
         <span>관련</span>
         <span class="bold-text is-purple">청원 수</span>
-        <span>합</span>
     </div>
     <div class="has-text-right">
-        <span class="xlarge-text bold-text">102건</span>
+        <span id="keywordCount" class="xlarge-text bold-text"></span>
     </div>
 </div>
 <%-- 키워드 관련 청원 동의 수 합 --%>
@@ -32,7 +31,7 @@
         <span>합</span>
     </div>
     <div class="has-text-right">
-        <span class="xlarge-text bold-text">8,012,373회</span>
+        <span id="sumAgreeCount" class="xlarge-text bold-text"></span>
     </div>
 </div>
 <%-- 키워드 관련 청원 최다 동의 --%>
@@ -43,6 +42,6 @@
         <span class="bold-text is-purple">최다 동의</span>
     </div>
     <div class="has-text-right">
-        <span class="xlarge-text bold-text">1,201,327회</span>
+        <span id="maxAgreeCount" class="xlarge-text bold-text"></span>
     </div>
 </div>

@@ -8,7 +8,7 @@
 --%>
 
 <%-- 상단 (사이드 바 오픈 버튼, 페이지 제목, 검색창) --%>
-<nav class="level is-mobile">
+<nav class="level">
 	<%-- Left side --%>
 	<div class="level-left">
 		<div class="level-item">
@@ -31,8 +31,16 @@
 	<%-- Right side --%>
 	<div class="level-right">
 		<div class="level-item">
-			<!-- 검색창 -->
-			<span id="Search">Search...</span>
+			<div class="field has-addons">
+				<p class="control">
+					<input id="searchInput" class="input" type="text" placeholder="키워드를 입력하세요">
+				</p>
+				<div class="control">
+					<a id="searchButton" class="button">
+						<i class="fas fa-search"></i>
+					</a>
+				</div>
+			</div>
 		</div>
 	</div>
 </nav>

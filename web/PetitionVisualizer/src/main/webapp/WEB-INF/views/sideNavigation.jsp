@@ -24,8 +24,8 @@
   <div style="flex: 1;"></div>
   <a href="#">
     <ul>
-      <li><i class="fas fa-play"></i></li>
-      <li><span>재생</span></li>
+      <li><i class="fas fa-sign-in-alt"></i></li>
+      <li><span>로그인</span></li>
     </ul>
   </a>
 </div>

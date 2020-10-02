@@ -1,9 +1,16 @@
 # 메모장
 
+> **JSoup 추가**
+>
+> `pom.xml`에 JSoup 추가 하였음
+> 클래스를 찾을 수 없다는 에러 발생 시
+> [JSoup 에러 해결 방법](https://cublip.tistory.com/318) 참고
+
 > **MyBatis 추가**
 >
 > `pom.xml`에 MyBatis와 MySQL Connector 추가
 > `application.properties`에 관련 설정
+>
 > - 매핑 파일 경로 설정
 > - 모델 경로 설정
 >
@@ -12,12 +19,14 @@
 > **UTF-8 설정**
 >
 > `application.properties`에 **UTF-8** 관련 설정
+>
 > - `jdbc:mysql://서버:MYSQL포트/스키마명?useUnicode=true&characterEncoding=utf8`
 > - 스프링 및 http encoding
 
 > **모델, 서비스, 매퍼 추가**
 >
 > 현재 생성되어 있는 테이블들만 테스트 용 함수 추가
+>
 > - category
 > - category_post_count
 > - post
@@ -26,20 +35,23 @@
 >
 > `...Mapper.xml` 파일들의 경우
 > `...Mapper.java` 파일에서 함수의 매개변수인 모델을 사용하거나 변수 사용
->   - ex) Post => Post 멤버 변수 `#{post_id} / #{title} / ...`
->   - ex) @param("쿼리에서 사용할 변수명") 어노테이션 => `#{쿼리에서 사용할 변수명}` 
->   - => `SELECT ... FROM ... WHERE post_id = #{post_id}`
+>
+> - ex) Post => Post 멤버 변수 `#{post_id} / #{title} / ...`
+> - ex) @param("쿼리에서 사용할 변수명") 어노테이션 => `#{쿼리에서 사용할 변수명}`
+> - => `SELECT ... FROM ... WHERE post_id = #{post_id}`
+
 ---
 
 > **CSS 추가**
 >
 > `page-common.css` 에 몇 가지 추가함.
+>
 > - 색 지정
 >   - `is-purple` & `is-grey`
 > - 폰트 지정
 >   - `bold-text` : 굵은 글씨
 >   - 폰트 크기
->       - `xlarge-text`, `large-text`, `small-text` 
+>     - `xlarge-text`, `large-text`, `small-text`
 > - 버튼 (button은 Bulma의 CSS)
 >   - `class="button is-purple"` : 보라색 버튼
 >   - `class="button is-purple is-out-lined"` : 보라색 테두리, 하얀 바탕 버튼
@@ -62,11 +74,11 @@
 
 > **billboard.js 렌더링**
 >
-> billboard.js를 사용하여 그래프를 생성하고 테스트 할 때, **크롬 및 아이폰 Safari에서는** 다른 설정 없이도 **문제없이 작동** 하였다. 하지만 **크롬-개발자 도구-아이폰** 환경에서는 **범위를 넘어 렌더링** 되는 문제가 발생함. 다른 HTML 요소들이 자리를 완벽히 잡기 전에 렌더링 되어 발생하는  문제로 보임. 개발자 도구 특유의 렌더링 방식 때문에 그런 것 같으니 **신경쓰지 않아도 될 것** 같다.
+> billboard.js를 사용하여 그래프를 생성하고 테스트 할 때, **크롬 및 아이폰 Safari에서는** 다른 설정 없이도 **문제없이 작동** 하였다. 하지만 **크롬-개발자 도구-아이폰** 환경에서는 **범위를 넘어 렌더링** 되는 문제가 발생함. 다른 HTML 요소들이 자리를 완벽히 잡기 전에 렌더링 되어 발생하는 문제로 보임. 개발자 도구 특유의 렌더링 방식 때문에 그런 것 같으니 **신경쓰지 않아도 될 것** 같다.
 
 ---
 
-> **Lombok**  
+> **Lombok**
 >
 > Maven으로 Lombok을 다운로드 했지만, 사용하기 위해서는 **Lombok의 jar 파일을 실행**해, 사용할 **IDE를 지정**해주어야 IDE에서 개발할 수 있었음.
 

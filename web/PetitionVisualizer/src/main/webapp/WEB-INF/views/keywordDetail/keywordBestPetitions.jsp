@@ -15,7 +15,7 @@
 
 <div class="in-a-row margin-bottom-small">
     <span class="icon is-purple" style="align-self: start;"><i class="fas fa-angle-right"></i></i></span>
-    <span class="bold-text" id="mostAgreeNewPetition"></span>
+    <a href="#" class="bold-text is-black" id="mostAgreeOldPetitionURL"><span class="bold-text" id="mostAgreeNewPetition"></span></a>
 </div>
 
 <div class="margin-bottom">
@@ -35,7 +35,7 @@
 
 <div class="in-a-row margin-bottom-small">
     <span class="icon is-purple" style="align-self: start;"><i class="fas fa-angle-right"></i></i></span>
-    <span class="bold-text" id="mostAgreeOldPetition"></span>
+    <a href="#" class="bold-text is-black" id="mostAgreeOldPetitionURL"><span id="mostAgreeOldPetition"></span></a>
 </div>
 
 <div class="margin-bottom">

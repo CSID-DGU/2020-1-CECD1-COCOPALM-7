@@ -10,7 +10,7 @@
 <html>
   <head>
     <%@ include file="../commonHead.jsp" %>
-    <link rel="stylesheet" href="css/newPetition.css" />
+    <link rel="stylesheet" href="/css/newPetition.css" />
     <title><%=pageTitle%></title>
   </head>
 
@@ -22,11 +22,11 @@
       <%@ include file="../commonTop.jsp" %>
       
       <%-------------------------페이지 상단 -------------------------%>
-      <div class="columns is-variable is-8">
+      <div class="columns is-variable is-8-tablet">
       
       	<%--기간 내 화제 키워드 top3 --%>
         <div class="column margin-bottom-large">
-			<%@ include file="periodTop3Keyword.jsp" %>        
+			    <%@ include file="periodTop3Keyword.jsp" %>        
         </div>
         
         <%--키워드 top3 각각의 그래프 --%>
@@ -36,13 +36,13 @@
         
         <%--TOP3 키워드 요약 --%>
         <div class="column margin-bottom-large">
-			<%@ include file="newPetitionSummary.jsp" %>
+		    	<%@ include file="newPetitionSummary.jsp" %>
         </div>
         
       </div>
       
       <%-------------------------페이지 하단 -------------------------%>
-      <div class="columns is-variable is-8">
+      <div class="columns is-variable is-8-tablet">
         <%-- 키워드 관련 청원 집계 --%>
         <div class="column margin-bottom-large">
           <%@ include file="keywordRelatedPetitionsInformation.jsp" %>
@@ -63,9 +63,9 @@
     <%------------------ Scripts are here ! ------------------%>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://d3js.org/d3.v5.min.js"></script>
-    <script src="js/billboard.min.js"></script>
-    <script src="js/page-common.js"></script>
-    <script src="js/newPetition.js"></script>
+    <script src="/js/billboard.min.js"></script>
+    <script src="/js/page-common.js"></script>
+    <script src="/js/newPetition.js"></script>
     <%--------------------------------------------------------%>
   </body>
 </html>

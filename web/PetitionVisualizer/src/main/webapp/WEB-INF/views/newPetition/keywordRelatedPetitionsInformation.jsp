@@ -9,7 +9,7 @@
 
 <%-- 이 컬럼 제목 --%>
 <div class="margin-bottom has-text-centered">
-    <a href="/keyword" class="large-text is-purple bold-text">코로나</a>
+    <a href="#" class="large-text is-purple bold-text keywordTop1"></a>
     <span class="large-text bold-text">관련 청원</span>
 </div>
 
@@ -17,7 +17,7 @@
 
 <div class="make-circle-centered">
 <div class="circle">
-    <span class="bold-text">1281</span>
+    <span class="bold-text" id="circleGraph">1281</span>
     <span>동의</span>
 </div>
 </div>

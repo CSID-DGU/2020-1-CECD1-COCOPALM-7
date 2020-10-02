@@ -6,4 +6,9 @@
     	SELECT * FROM category
     </select>
     
-</mapper>   
+    <select id="selectCategory" resultType="String">
+    	SELECT name
+    	FROM category
+    	WHERE category_id = ${categoryNumber};
+    </select>
+</mapper>

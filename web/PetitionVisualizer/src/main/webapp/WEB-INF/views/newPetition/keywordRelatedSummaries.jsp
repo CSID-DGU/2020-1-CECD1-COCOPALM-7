@@ -14,12 +14,12 @@
 
 <div class="margin-bottom-large">
     <p class="margin-bottom">
-        만료 이전 청원 42건 중, <a href="/keyword" class="bold-text is-purple">코로나</a> 
-        관련 청원은 총 <span class="bold-text">18건</span>이었으며, 
-        각 청원의 동의 수를 합치면 총 <span class="bold-text">1281회</span> 입니다.
+        만료 이전 청원 <span id="allNotExpiredPostCount"></span> 중, <a href="#" class="bold-text is-purple keywordTop1"></a> 
+        관련 청원은 총 <span class="bold-text" id="keywordNotExpiredPostCount"></span>이었으며, 
+        각 청원의 동의 수를 합치면 총 <span class="bold-text" id="keywordNotExpiredAgreeSum"></span> 입니다.
     </p>
     <p>
-        여러 <a href="/keyword" class="bold-text is-purple">코로나</a> 관련 청원들 중 
+        여러 <a href="#" class="bold-text is-purple keywordTop1"></a> 관련 청원들 중 
         가장 많은 동의를 받은 의견은 다음과 같은 내용이었습니다.
     </p>
 </div>

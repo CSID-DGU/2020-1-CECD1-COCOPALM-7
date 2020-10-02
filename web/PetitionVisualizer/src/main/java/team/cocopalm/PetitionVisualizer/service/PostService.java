@@ -1,6 +1,7 @@
 package team.cocopalm.PetitionVisualizer.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,14 +13,25 @@ import team.cocopalm.PetitionVisualizer.model.Post;
 public class PostService {
 	@Autowired PostMapper mapper;
 	
-	public Post selectMostAgreePetitionByKeyword(String keyword, boolean isNew) throws Exception {
-		if(isNew) 
-			return mapper.selectMostAgreePetitionByKeyword(keyword, 1);
-		else
-			return mapper.selectMostAgreePetitionByKeyword(keyword, 0);
+	public Post selectMostAgreePetitionByKeyword(String keyword, boolean isNewBool) throws Exception {
+		int isNew = isNewBool ? 1 : 0;
+		return mapper.selectMostAgreePetitionByKeyword(keyword, isNew);
+	}
+	
+	public Map<String, Object> getStatusOfKeyword(String keyword, boolean isNewBool) throws Exception {
+		int isNew = isNewBool ? 1 : 0;
+		return mapper.getStatusOfKeyword(keyword, isNew);
 	}
 	
 	public String test(String keyword) throws Exception {
 		return mapper.test(keyword);
+	}
+	
+	public List<Post> selectRelatedPetitions(String keyword) throws Exception {
+		return mapper.selectRelatedPetitions(keyword);
+	}
+	
+	public Post selectBestCategoryPetition(int categoryId) throws Exception {
+		return mapper.selectBestCategoryPetition(categoryId);
 	}
 }

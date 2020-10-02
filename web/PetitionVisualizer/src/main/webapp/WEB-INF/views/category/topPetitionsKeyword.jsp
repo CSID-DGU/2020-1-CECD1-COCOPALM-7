@@ -10,18 +10,18 @@
 <div class="content margin-top-large">
   <div class="columns is-mobile is-vcentered">
     <div class="column is-half has-text-right">
-      <span class="bold-text is-grey">청원 수 합이</span>
+      <span class="bold-text is-grey">청원이 가장</span>
       <br/>
-      <span class="bold-text is-grey">가장 큰 키워드</span>
+      <span class="bold-text is-grey">많았던 키워드</span>
     </div>
     <div class="column is-half has-text-left">
-      <span class="bold-text is-purple">코로나</span>
+      <a href="#" class="bold-text is-cate-${categoryNumber}" id="mostPostKeyword"></a>
       <br/>
     </div>
   </div>
   <div class="columns is-vcentered">
     <div class="column is-full has-text-centered">
-      <span class="xlarge-text bold-text">9,876건</span>
+      <span class="xlarge-text bold-text" id="mostPostKeywordPostSum"></span>
     </div>
   </div>
 </div>

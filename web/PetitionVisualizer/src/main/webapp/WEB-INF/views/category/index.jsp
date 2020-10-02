@@ -3,13 +3,13 @@
   String pageTitlePrefix = ""; 
   String pageTitleSuffix = "카테고리 별 청원 트렌드"; 
   String pageTitle = pageTitlePrefix + pageTitleSuffix;
-  String category = "정치개혁";
+  String category = (String)request.getAttribute("category");
 %>
 <!DOCTYPE html>
 <html>
   <head>
     <%@ include file="../commonHead.jsp" %>
-    <link rel="stylesheet" href="css/category.css" />
+    <link rel="stylesheet" href="/css/category.css" />
     <title>
       <%=pageTitle%>
     </title>
@@ -76,11 +76,18 @@
     </div>
     <%--------------------------------------------------------%>
     <%------------------ Scripts are here ! ------------------%>
+    <script>const categoryNumber = ${categoryNumber};</script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://d3js.org/d3.v5.min.js"></script>
-    <script src="js/billboard.min.js"></script>
-    <script src="js/page-common.js"></script>
-		<script src="js/category.js"></script>
+    <script src="/js/billboard.min.js"></script>
+    <script src="/js/page-common.js"></script>
+		<script src="/js/category.js"></script>
+    <script>
+      $(document).ready(() => {
+        $(".score-bar").addClass("is-cate-bg-${categoryNumber}");
+        $("a[href^='/keyword'").addClass("hover-cate-${categoryNumber}");
+      });
+    </script>
     <%--------------------------------------------------------%>
   </body>
 </html>
