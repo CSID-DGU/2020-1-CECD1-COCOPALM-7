@@ -55,7 +55,6 @@ public class KeywordDetailApiController {
 	
 	@GetMapping("/news")
 	public ArrayList<HashMap<String, String>> keywordNews(@RequestParam String keyword) throws Exception {
-		
         return keywordService.naverNews(keyword);
 	}
 	

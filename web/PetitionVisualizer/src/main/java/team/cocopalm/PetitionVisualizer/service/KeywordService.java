@@ -37,8 +37,25 @@ public class KeywordService {
 		return wrapper;
 	}
 	
-	public List<Keyword> selectKeywordTop3() throws Exception {
-		return mapper.selectKeywordTop3();
+	public List<Keyword> selectKeywordTop3(String period) throws Exception {
+		List<Keyword> keywordsWithScore;
+		
+		if(period.equals("DAY")) {
+			keywordsWithScore = mapper.selectKeywordTop3ByDay();
+		} else if(period.equals("WEEK")) {
+			keywordsWithScore = mapper.selectKeywordTop3ByWeek();
+		} else {
+			keywordsWithScore = mapper.selectKeywordTop3ByMonth();			
+		}
+		
+		double max = (keywordsWithScore.get(0).getScore() * 10) / 9.0;
+		for(int i=0; i<keywordsWithScore.size(); i++) {
+			Keyword word = keywordsWithScore.get(i);
+			int adjusted = (int)Math.floor((word.getScore() / max) * 100) + (10 - i);
+			word.setScore(adjusted);
+		}
+		
+		return keywordsWithScore;
 	}
 	
 	public Keyword selectCategoryMostPostKeyword(int categoryId) throws Exception {
@@ -50,21 +67,20 @@ public class KeywordService {
 	}
 	
 	public ArrayList<HashMap<String, String>> naverNews(String keyword) throws IOException {
-		String targetUrl = "https://search.naver.com/search.naver?where=news&sm=tab_jum&photo=1&query=";
+		String targetUrl = "https://search.naver.com/search.naver?where=news&sm=tab_opt&sort=0&photo=1&query=";
 		targetUrl += URLEncoder.encode(keyword, "UTF-8");
 		
 		Document doc = Jsoup.connect(targetUrl).get();
-		Elements newsDiv = doc.select("#main_pack > div.news.mynews.section._prs_nws > ul > li");
-		
+		Elements newsDiv = doc.select("#main_pack > section.sc_new.sp_nnews._prs_nws > div > div.group_news > ul > li");
+
 		ArrayList<HashMap<String, String>> newsList = new ArrayList<>();
-		
 		for(Element item : newsDiv) {
 			HashMap<String, String> news = new HashMap<>();
 			String img = item.select("img").attr("src");
-			String title = item.select("dl > dt > a").attr("title");
-			String url = item.select("dl > dt > a").attr("href");
-			String time = item.select("dl > dd.txt_inline").first().ownText();
-
+			String title = item.select("div > div > a").attr("title");
+			String url = item.select("div > div > a").attr("href");
+			String time = item.select("div.news_wrap.api_ani_send > div > div.news_info > div > span").first().ownText();
+			System.out.println(img + title + url + time);
 			news.put("src", img);
 			news.put("title", title);
 			news.put("url", url);
@@ -76,5 +92,29 @@ public class KeywordService {
 		newsList.remove(newsList.size()-1);
 		
 		return newsList;
+	}
+	
+	public List<Keyword> selectRanking() throws Exception {
+		List<Keyword> keywordsWithScore = mapper.selectRanking();
+		double max = (keywordsWithScore.get(0).getScore() * 10) / 9.0;
+		for(int i=0; i<keywordsWithScore.size(); i++) {
+			Keyword word = keywordsWithScore.get(i);
+			int adjusted = (int)Math.floor((word.getScore() / max) * 100) + (10 - i);
+			word.setScore(adjusted);
+		}
+		
+		return keywordsWithScore;
+	}
+	
+	public List<Keyword> selectRankingByCategory(int categoryId) throws Exception {
+		List<Keyword> keywordsWithScore = mapper.selectRankingByCategoryDay(categoryId);
+		double max = (keywordsWithScore.get(0).getScore() * 10) / 9.0;
+		for(int i=0; i<keywordsWithScore.size(); i++) {
+			Keyword word = keywordsWithScore.get(i);
+			int adjusted = (int)Math.floor((word.getScore() / max) * 100) + (10 - i);
+			word.setScore(adjusted);
+		}
+		
+		return keywordsWithScore;
 	}
 }

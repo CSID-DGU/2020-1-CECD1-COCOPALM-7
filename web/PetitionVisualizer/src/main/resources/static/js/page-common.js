@@ -4,6 +4,7 @@ const API = {
   NEW_PETITION: {
     KEYWORD_TOP_3: SERVER_URL + "/api/newPetition/keywordTop3",
     META_DATA: SERVER_URL + "/api/newPetition/metaData",
+    KEYWORD_RANKING: SERVER_URL + "/api/newPetition/ranking",
   },
   KEYWORD: {
     BEST_PETITIONS: SERVER_URL + "/api/keyword/bestPetitions",
@@ -16,6 +17,7 @@ const API = {
     BEST_PETITION: SERVER_URL + "/api/category/bestPetition",
     MOST_POST_KEYWORD: SERVER_URL + "/api/category/mostPostKeyword",
     MOST_AGREE_KEYWORD: SERVER_URL + "/api/category/mostAgreeKeyword",
+    KEYWORD_RANKING: SERVER_URL + "/api/category/ranking",
   },
 };
 

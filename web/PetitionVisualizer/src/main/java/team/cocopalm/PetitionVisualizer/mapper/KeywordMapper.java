@@ -15,8 +15,12 @@ public interface KeywordMapper {
     public int isExist(@Param("keyword") String keyword) throws Exception;
     public Keyword selectCategoryMostPostKeyword(@Param("categoryId") int categoryId) throws Exception;
     public Keyword selectCategoryMostAgreeKeyword(@Param("categoryId") int categoryId) throws Exception;
-    public List<Keyword> selectKeywordTop3() throws Exception;
+    public List<Keyword> selectKeywordTop3ByDay() throws Exception;
+    public List<Keyword> selectKeywordTop3ByWeek() throws Exception;
+    public List<Keyword> selectKeywordTop3ByMonth() throws Exception;
     public Map<String, Object> getCountAllNotExpiredPost() throws Exception;
     public Map<String, Object> getAggrKeywordNotExpiredPost(@Param("keyword") String keyword) throws Exception;
     public Map<String, Object> keywordMostPostDay(@Param("keyword") String keyword) throws Exception;
+    public List<Keyword> selectRanking() throws Exception;
+    public List<Keyword> selectRankingByCategoryDay(@Param("categoryId") int categoryId) throws Exception;
 }

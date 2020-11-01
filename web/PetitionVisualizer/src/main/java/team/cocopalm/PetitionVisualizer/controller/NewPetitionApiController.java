@@ -18,12 +18,17 @@ public class NewPetitionApiController {
 	@Autowired KeywordService keywordService;
 	
 	@GetMapping("/keywordTop3")
-	public List<Keyword> getKeywordTop3() throws Exception {
-		return keywordService.selectKeywordTop3();
+	public List<Keyword> getKeywordTop3(@RequestParam("period") String period) throws Exception {
+		return keywordService.selectKeywordTop3(period);
 	}
 	
 	@GetMapping("/metaData")
 	public Map<String, Object> getMetaData(@RequestParam String keyword) throws Exception {
 		return keywordService.selectMetaData(keyword);
+	}
+	
+	@GetMapping("/ranking")
+	public List<Keyword> getKeywordRanking() throws Exception {
+		return keywordService.selectRanking();
 	}
 }

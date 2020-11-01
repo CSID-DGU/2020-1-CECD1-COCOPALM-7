@@ -41,7 +41,7 @@ var sampleRanking = [
   },
 ];
 
-$(document).ready(function () {
+$(document).ready(async function () {
   // ==================================================================================
   // 현재 경로 가져오기
   var currentPath =
@@ -111,10 +111,20 @@ $(document).ready(function () {
   });
   // ==================================================================================
 
+  var ranking;
+  await $.ajax({
+    url: API.CATEGORY.KEYWORD_RANKING + "?categoryId=" + categoryNumber,
+    method: "GET",
+  })
+    .done((res) => (ranking = res))
+    .fail((err) => console.log(err));
+
+  console.log(ranking);
+
   // 키워드 랭킹 생성
   var rankingArea = $("#categoryIssuedKeywordsRanking");
   // 위에서 샘플로 정의한 키워드 랭킹 데이터 각각에 대하여
-  sampleRanking.forEach((keywordInfo, index) => {
+  ranking.forEach((keywordInfo, index) => {
     // p 태그로 감싸서 넣을 예정
     var wrapper = document.createElement("p");
 
@@ -138,7 +148,8 @@ $(document).ready(function () {
     // 점수를 나타내는 막대는 div 태그를 이용하여 score를 길이로 나타냄
     var scoreBar = document.createElement("div");
     scoreBar.className = "score-bar is-cate-bg-" + categoryNumber;
-    scoreBar.style.width = "calc(" + keywordInfo.score + "% - 30px)";
+    scoreBar.style.width =
+      "calc((100% - 30px) * " + keywordInfo.score + " / 100";
 
     // p에 추가하여 감싸고
     wrapper.append(keywordArea, newLine, scoreBar, score);

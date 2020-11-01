@@ -17,7 +17,7 @@
     <div class="buttons are-small">
         <button class="button is-purple">24시간</button>
         <button class="button is-purple is-outlined">일주일</button>
-        <button class="button is-purple is-outlined">전체</button>
+        <button class="button is-purple is-outlined">한 달</button>
     </div>
 </div>
 <%-- 시각화 차트 --%>
