@@ -1,5 +1,5 @@
 const SERVER_URL = "http://petition.ga";
-// const SERVER_URL = "http://localhost";
+//const SERVER_URL = "http://localhost";
 const API = {
   NEW_PETITION: {
     KEYWORD_TOP_3: SERVER_URL + "/api/newPetition/keywordTop3",

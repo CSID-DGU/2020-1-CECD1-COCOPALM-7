@@ -16,9 +16,11 @@
   flex-direction: column;
 }
 .score-bar {
+	
   display: inline-block;
   height: 3px;
-  background-color: #6c5ce7;
+  /*background-color: #6c5ce7;*/
+  background-color:  black;
   vertical-align: middle;
   margin-right: 8px;
 }

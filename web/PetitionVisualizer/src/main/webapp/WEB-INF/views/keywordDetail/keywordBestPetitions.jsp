@@ -7,6 +7,7 @@
 - 변수 필요하지 않음
 --%>
 <%-- 가장 많은 동의를 받은 만료 이전 청원 --%>
+<br><br>
 <div class="margin-bottom">
     <span class="large-text bold-text">가장 많은 동의를 받은</span>
     <span class="large-text bold-text is-purple">만료 이전</span>

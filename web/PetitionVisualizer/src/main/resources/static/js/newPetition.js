@@ -235,8 +235,10 @@ $(document).ready(async function () {
 
     var keywordArea = document.createElement("a");
     keywordArea.href = "/keyword/" + encodeURI(keywordInfo.keyword);
-    keywordArea.className = "small-text bold-text is-black hover-purple";
+    //keywordArea.className = "small-text bold-text is-black hover-purple";
     keywordArea.innerHTML = index + 1 + "&nbsp;&nbsp;" + keywordInfo.keyword;
+    keywordArea.className = "small-text bold-text is-purple";
+
 
     var newLine = document.createElement("br");
 
@@ -249,7 +251,7 @@ $(document).ready(async function () {
     score.className = "small-text is-grey";
     score.innerHTML = keywordInfo.score;
 
-    wrapper.append(keywordArea, newLine, scoreBar, score);
+    wrapper.append(keywordArea,newLine, scoreBar, score);
     rankingArea.append(wrapper);
   });
 
