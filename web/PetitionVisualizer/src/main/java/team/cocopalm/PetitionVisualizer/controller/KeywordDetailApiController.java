@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import team.cocopalm.PetitionVisualizer.model.IncrementOfKeyword;
 import team.cocopalm.PetitionVisualizer.model.Post;
 import team.cocopalm.PetitionVisualizer.model.PostKeyword;
 import team.cocopalm.PetitionVisualizer.service.KeywordService;
@@ -61,11 +62,16 @@ public class KeywordDetailApiController {
 	// 관련 청원 전체 목록
 	@GetMapping("/related")
 	public List<Post> relatedPetitions(@RequestParam String keyword) throws Exception {
-		return postService.selectRelatedPetitions(keyword);
+		return postService.getRelatedPetitions(keyword);
 	}
 	
 	@GetMapping("/isExist")
 	public boolean isExist(@RequestParam String keyword) throws Exception {
 		return keywordService.isExist(keyword);
+	}
+	
+	@GetMapping("/increment")
+	public List<IncrementOfKeyword> getIncrementByPeriod(@RequestParam("keyword") String keyword, @RequestParam("period") String period) throws Exception {
+		return keywordService.selectKeywordIncrementByPeriod(keyword, period);
 	}
 }

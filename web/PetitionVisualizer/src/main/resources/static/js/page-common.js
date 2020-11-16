@@ -1,23 +1,25 @@
-const SERVER_URL = "http://petition.ga";
-//const SERVER_URL = "http://localhost";
+//const SERVER_URL = "http://petition.ga";
 const API = {
   NEW_PETITION: {
-    KEYWORD_TOP_3: SERVER_URL + "/api/newPetition/keywordTop3",
-    META_DATA: SERVER_URL + "/api/newPetition/metaData",
-    KEYWORD_RANKING: SERVER_URL + "/api/newPetition/ranking",
+    KEYWORD_TOP_3: "/api/newPetition/keywordTop3",
+    META_DATA: "/api/newPetition/metaData",
+    KEYWORD_RANKING: "/api/newPetition/ranking",
+    SUMMARY: "/api/newPetition/summary",
   },
   KEYWORD: {
-    BEST_PETITIONS: SERVER_URL + "/api/keyword/bestPetitions",
-    STATUS: SERVER_URL + "/api/keyword/status",
-    NEWS: SERVER_URL + "/api/keyword/news",
-    RELATED: SERVER_URL + "/api/keyword/related",
-    IS_EXIST: SERVER_URL + "/api/keyword/isExist",
+    BEST_PETITIONS: "/api/keyword/bestPetitions",
+    STATUS: "/api/keyword/status",
+    NEWS: "/api/keyword/news",
+    RELATED: "/api/keyword/related",
+    IS_EXIST: "/api/keyword/isExist",
+    INCREMENT: "/api/keyword/increment",
   },
   CATEGORY: {
-    BEST_PETITION: SERVER_URL + "/api/category/bestPetition",
-    MOST_POST_KEYWORD: SERVER_URL + "/api/category/mostPostKeyword",
-    MOST_AGREE_KEYWORD: SERVER_URL + "/api/category/mostAgreeKeyword",
-    KEYWORD_RANKING: SERVER_URL + "/api/category/ranking",
+    BEST_PETITION: "/api/category/bestPetition",
+    MOST_POST_KEYWORD: "/api/category/mostPostKeyword",
+    MOST_AGREE_KEYWORD: "/api/category/mostAgreeKeyword",
+    KEYWORD_RANKING: "/api/category/ranking",
+    INCREMENT: "/api/category/increment",
   },
 };
 

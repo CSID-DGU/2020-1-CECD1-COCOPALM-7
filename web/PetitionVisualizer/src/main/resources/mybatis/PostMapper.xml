@@ -3,10 +3,12 @@
 <mapper namespace="team.cocopalm.PetitionVisualizer.mapper.PostMapper">
 
     <select id="selectMostAgreePetitionByKeyword" resultType="Post">		
-		SELECT p.post_id, p.category_id, p.title, p.is_new, p.start_date, p.end_date, p.agree_count
+		SELECT p.*, ps.summary
 		FROM post_keyword pk
 		INNER JOIN post p
 		ON pk.post_id = p.post_id
+		INNER JOIN post_summary ps
+		ON p.post_id = ps.post_id
 		WHERE pk.keyword = #{keyword}
 			AND p.is_new = #{isNew}
 		ORDER BY p.agree_count DESC
@@ -38,10 +40,23 @@
     </select>
     
     <select id="selectBestCategoryPetition" resultType="Post">
-    	SELECT *
-		FROM post
+    	SELECT p.*, ps.summary
+		FROM post p
+        INNER JOIN post_summary ps
+        ON p.post_id = ps.post_id
 		WHERE category_id = #{categoryId}
 		ORDER BY agree_count DESC
+		LIMIT 1;
+    </select>
+    
+    <select id="selectSummaryOfBestNewPetiton" resultType="Post">
+    	SELECT ps.summary
+		FROM post p
+		INNER JOIN post_keyword pk
+		ON p.is_new = 1 AND p.post_id = pk.post_id AND pk.keyword = #{keyword}
+		INNER JOIN post_summary ps
+		ON p.post_id = ps.post_id
+		ORDER BY p.agree_count DESC
 		LIMIT 1;
     </select>
 </mapper>   

@@ -18,10 +18,8 @@
     </div>
 
     <div class="margin-bottom-large">
-        <span class="is-grey">
-        2020년 05월 15일(금요일) [보건복지부]에서 헌혈자가 감소하여 주위단계라는
-        재난문자가 한번 왔더군요 한번으로 끝내지 마시고 매일 "보건복지부"에서 재난문자로 동참을 요하는 문자를 부탁드리며
-        그리고 중앙중부에서는 이 점을 심각하게 받아주기고 조치 부탁드립니다.
+        <span class="is-grey" id="bestPetitionSummary">
+        -
         </span>
     </div>
 </div>

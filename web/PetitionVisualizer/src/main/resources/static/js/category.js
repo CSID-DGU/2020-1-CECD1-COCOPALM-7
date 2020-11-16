@@ -1,46 +1,3 @@
-var sampleRanking = [
-  {
-    keyword: "코로나", // 이태원 공무원
-    score: 93,
-  },
-  {
-    keyword: "이태원",
-    score: 89,
-  },
-  {
-    keyword: "공무원",
-    score: 81,
-  },
-  {
-    keyword: "국민연금",
-    score: 77,
-  },
-  {
-    keyword: "화폐",
-    score: 72,
-  },
-  {
-    keyword: "국회의원",
-    score: 66,
-  },
-  {
-    keyword: "부동산",
-    score: 63,
-  },
-  {
-    keyword: "최저",
-    score: 55,
-  },
-  {
-    keyword: "불법",
-    score: 43,
-  },
-  {
-    keyword: "지원",
-    score: 35,
-  },
-];
-
 $(document).ready(async function () {
   // ==================================================================================
   // 현재 경로 가져오기
@@ -62,53 +19,73 @@ $(document).ready(async function () {
 
   // ==================================================================================
   // 왼쪽 상단 영역 + 선 그래프
-  var chart = bb.generate({
-    data: {
-      columns: [
-        ["청원", 241, 737, 78, 66, 435, 234, 23, 416, 135, 71, 885, 124, 612],
-        [
-          "동의",
-          245,
-          164,
-          628,
-          123,
-          255,
-          612,
-          176,
-          217,
-          611,
-          351,
-          123,
-          150,
-          240,
-        ],
-      ],
-      types: {
-        청원: "area",
-        동의: "line",
-      },
-    },
-    color: {
-      pattern: ["#c0c0c0", "#6c5ce7"],
-    },
-    legend: {
-      item: {
-        tile: {
-          width: 0,
-          height: 0,
+  $.ajax({
+    url: API.CATEGORY.INCREMENT + "?categoryId=" + categoryNumber,
+    method: "GET",
+  })
+    .done((res) => {
+      var getEachColumns = function () {
+        var collect_times = ["collect_time"];
+        var post_increments = ["청원"];
+        var agree_increments = ["동의"];
+        res.forEach((e) => {
+          collect_times.push(e.collect_time);
+          post_increments.push(e.post_increment);
+          agree_increments.push(e.agree_increment);
+        });
+
+        return [collect_times, post_increments, agree_increments];
+      };
+
+      var chart = bb.generate({
+        data: {
+          x: "collect_time",
+          columns: getEachColumns(),
+          types: {
+            청원: "area",
+            동의: "line",
+          },
+          axes: {
+            청원: "y2",
+            동의: "y",
+          },
         },
-      },
-    },
-    point: {
-      show: false,
-    },
-    line: {
-      // 사용할 CSS 클래스(두번째 항에 적어서
-      // line chart에만 적용)
-      classes: ["", "cate-line-" + categoryNumber],
-    },
-    bindto: "#categoryTrendChart",
-  });
+        color: {
+          pattern: ["#c0c0c0", ""],
+        },
+        legend: {
+          item: {
+            tile: {
+              width: 0,
+              height: 0,
+            },
+          },
+        },
+        point: {
+          show: false,
+        },
+        axis: {
+          x: {
+            type: "category",
+            tick: {
+              text: {
+                show: false,
+              },
+            },
+          },
+          y2: {
+            show: true,
+          },
+        },
+        line: {
+          // 사용할 CSS 클래스(두번째 항에 적어서
+          // line chart에만 적용)
+          classes: ["", "cate-line-" + categoryNumber],
+        },
+        bindto: "#categoryTrendChart",
+      });
+    })
+    .fail((err) => console.log(err));
   // ==================================================================================
 
   var ranking;
@@ -118,8 +95,6 @@ $(document).ready(async function () {
   })
     .done((res) => (ranking = res))
     .fail((err) => console.log(err));
-
-  console.log(ranking);
 
   // 키워드 랭킹 생성
   var rankingArea = $("#categoryIssuedKeywordsRanking");
@@ -167,6 +142,7 @@ $(document).ready(async function () {
     .done((res) => {
       $("#bestPetitionTitle").text(res.title);
       $("#bestPetitionTitle").attr("href", getPetionURL(res.post_id));
+      $("#bestPetitionSummary").text(res.summary);
     })
     .fail((err) => console.log(err));
   // ==================================================================================
@@ -190,7 +166,6 @@ $(document).ready(async function () {
     method: "GET",
   })
     .done((res) => {
-      console.log(res);
       $("#mostAgreeKeyword").text(res.keyword);
       $("#mostAgreeKeyword").attr("href", "/keyword/" + encodeURI(res.keyword));
       $("#mostAgreeKeywordAgreeSum").text(res.agree_sum.format() + "회");

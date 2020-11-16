@@ -8,6 +8,14 @@ public class Post {
 	private String end_date;
 	private int agree_count;
 	private int is_new;
+	private String summary;
+	
+	public String getSummary() {
+		return summary;
+	}
+	public void setSummary(String summary) {
+		this.summary = summary;
+	}
 	public int getPost_id() {
 		return post_id;
 	}
@@ -53,6 +61,7 @@ public class Post {
 	@Override
 	public String toString() {
 		return "Post [post_id=" + post_id + ", category_id=" + category_id + ", title=" + title + ", start_date="
-				+ start_date + ", end_date=" + end_date + ", agree_count=" + agree_count + ", is_new=" + is_new + "]";
+				+ start_date + ", end_date=" + end_date + ", agree_count=" + agree_count + ", is_new=" + is_new
+				+ ", summary=" + summary + "]";
 	}
 }

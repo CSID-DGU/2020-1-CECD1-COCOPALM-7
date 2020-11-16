@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import team.cocopalm.PetitionVisualizer.model.IncrementOfCategory;
 import team.cocopalm.PetitionVisualizer.model.Keyword;
 import team.cocopalm.PetitionVisualizer.model.Post;
+import team.cocopalm.PetitionVisualizer.service.CategoryService;
 import team.cocopalm.PetitionVisualizer.service.KeywordService;
 import team.cocopalm.PetitionVisualizer.service.PostService;
 
@@ -18,10 +20,11 @@ import team.cocopalm.PetitionVisualizer.service.PostService;
 public class CategoryApiController {
 	@Autowired PostService postService;
 	@Autowired KeywordService keywordService;
+	@Autowired CategoryService categoryService;
 	
 	@GetMapping("/bestPetition")
 	public Post getBestPetition(@RequestParam int categoryId) throws Exception {
-		return postService.selectBestCategoryPetition(categoryId);
+		return postService.getBestCategoryPetition(categoryId);
 	}
 	
 	@GetMapping("/mostPostKeyword")
@@ -37,5 +40,10 @@ public class CategoryApiController {
 	@GetMapping("/ranking")
 	public List<Keyword> getKeywordRankingByCategory(@RequestParam int categoryId) throws Exception {
 		return keywordService.selectRankingByCategory(categoryId);
+	}
+	
+	@GetMapping("/increment")
+	public List<IncrementOfCategory> getCategoryIncrement(@RequestParam int categoryId) throws Exception {
+		return categoryService.selectCategoryIncrement(categoryId);
 	}
 }

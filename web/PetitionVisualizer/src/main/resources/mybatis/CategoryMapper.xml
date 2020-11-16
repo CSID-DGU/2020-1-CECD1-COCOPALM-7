@@ -11,4 +11,19 @@
     	FROM category
     	WHERE category_id = ${categoryNumber};
     </select>
+    
+    <select id="selectCategoryIncrement" resultType="IncrementOfCategory">
+		SELECT dt.category_id, dt.collect_date as collect_time, dt.agree_increment, dt.post_increment
+		FROM (
+			SELECT 
+				category_id, 
+			    LEFT(collect_time, 10) AS collect_date,
+			    <![CDATA[SUM(CASE WHEN agree_increment < 0 THEN 0 ELSE agree_increment END) AS agree_increment,]]>
+			    <![CDATA[SUM(CASE WHEN post_increment < 0 THEN 0 ELSE post_increment END) AS post_increment]]>
+			FROM increment_of_category
+			WHERE category_id = #{categoryId}
+			GROUP BY collect_date
+			ORDER BY collect_date ASC
+		) dt;
+    </select>
 </mapper>

@@ -10,12 +10,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import team.cocopalm.PetitionVisualizer.model.Keyword;
+import team.cocopalm.PetitionVisualizer.model.Post;
 import team.cocopalm.PetitionVisualizer.service.KeywordService;
+import team.cocopalm.PetitionVisualizer.service.PostService;
 
 @RestController
 @RequestMapping("/api/newPetition")
 public class NewPetitionApiController {
 	@Autowired KeywordService keywordService;
+	@Autowired PostService postService;
 	
 	@GetMapping("/keywordTop3")
 	public List<Keyword> getKeywordTop3(@RequestParam("period") String period) throws Exception {
@@ -30,5 +33,10 @@ public class NewPetitionApiController {
 	@GetMapping("/ranking")
 	public List<Keyword> getKeywordRanking() throws Exception {
 		return keywordService.selectRanking();
+	}
+	
+	@GetMapping("/summary")
+	public Post getBestNewPetitionSummary(@RequestParam String keyword) throws Exception {
+		return postService.getSummaryOfBestNewPetiton(keyword);
 	}
 }

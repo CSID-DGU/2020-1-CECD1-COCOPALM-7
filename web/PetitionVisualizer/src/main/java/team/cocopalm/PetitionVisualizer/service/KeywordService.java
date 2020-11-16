@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import team.cocopalm.PetitionVisualizer.mapper.KeywordMapper;
+import team.cocopalm.PetitionVisualizer.model.IncrementOfKeyword;
 import team.cocopalm.PetitionVisualizer.model.Keyword;
 
 @Service
@@ -34,6 +35,7 @@ public class KeywordService {
 		wrapper = mapper.getCountAllNotExpiredPost();
 		wrapper.putAll(mapper.getAggrKeywordNotExpiredPost(keyword));
 		wrapper.putAll(mapper.keywordMostPostDay(keyword));
+		wrapper.putAll(mapper.keywordMostAgreeMoment(keyword));
 		return wrapper;
 	}
 	
@@ -42,10 +44,19 @@ public class KeywordService {
 		
 		if(period.equals("DAY")) {
 			keywordsWithScore = mapper.selectKeywordTop3ByDay();
+			for(Keyword kwrd : keywordsWithScore) {
+				kwrd.setIncrement(mapper.selectIncrementOfKeywordByDay(kwrd.getKeyword()));
+			}
 		} else if(period.equals("WEEK")) {
 			keywordsWithScore = mapper.selectKeywordTop3ByWeek();
+			for(Keyword kwrd : keywordsWithScore) {
+				kwrd.setIncrement(mapper.selectIncrementOfKeywordByWeek(kwrd.getKeyword()));
+			}
 		} else {
-			keywordsWithScore = mapper.selectKeywordTop3ByMonth();			
+			keywordsWithScore = mapper.selectKeywordTop3ByMonth();
+			for(Keyword kwrd : keywordsWithScore) {
+				kwrd.setIncrement(mapper.selectIncrementOfKeywordByMonth(kwrd.getKeyword()));
+			}
 		}
 		
 		double max = (keywordsWithScore.get(0).getScore() * 10) / 9.0;
@@ -56,6 +67,16 @@ public class KeywordService {
 		}
 		
 		return keywordsWithScore;
+	}
+	
+	public List<IncrementOfKeyword> selectKeywordIncrementByPeriod(String keyword, String period) throws Exception {
+		if(period.equals("DAY")) {
+			return mapper.selectIncrementOfKeywordByDay(keyword);
+		} else if(period.equals("WEEK")) {
+			return mapper.selectIncrementOfKeywordByWeek(keyword);
+		} else {
+			return mapper.selectIncrementOfKeywordByMonth(keyword);
+		}
 	}
 	
 	public Keyword selectCategoryMostPostKeyword(int categoryId) throws Exception {
@@ -78,9 +99,9 @@ public class KeywordService {
 			HashMap<String, String> news = new HashMap<>();
 			String img = item.select("img").attr("src");
 			String title = item.select("div > div > a").attr("title");
-			String url = item.select("div > div > a").attr("href");
+			String url = item.select("div.news_wrap.api_ani_send > div > a").attr("href");
 			String time = item.select("div.news_wrap.api_ani_send > div > div.news_info > div > span").first().ownText();
-			System.out.println(img + title + url + time);
+//			System.out.println(img + title + url + time);
 			news.put("src", img);
 			news.put("title", title);
 			news.put("url", url);
@@ -107,7 +128,8 @@ public class KeywordService {
 	}
 	
 	public List<Keyword> selectRankingByCategory(int categoryId) throws Exception {
-		List<Keyword> keywordsWithScore = mapper.selectRankingByCategoryDay(categoryId);
+		// List<Keyword> keywordsWithScore = mapper.selectRankingByCategoryDay(categoryId);
+		List<Keyword> keywordsWithScore = mapper.selectRankingByCategoryHour(categoryId);
 		double max = (keywordsWithScore.get(0).getScore() * 10) / 9.0;
 		for(int i=0; i<keywordsWithScore.size(); i++) {
 			Keyword word = keywordsWithScore.get(i);

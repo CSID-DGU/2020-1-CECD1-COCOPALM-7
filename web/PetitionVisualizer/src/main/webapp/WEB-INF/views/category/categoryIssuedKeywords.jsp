@@ -9,7 +9,7 @@
 
 <%-- 제목만큼의 공백 할당 --%>
 <div class="margin-bottom">
-    <span class="large-text bold-text"><span class="is-cate-${categoryNumber}"><%=category %></span> 화제 키워드 </span><span class="is-grey"> (최근 24시간)</span>
+    <span class="large-text bold-text">최근 1시간 <span class="is-cate-${categoryNumber}"><%=category %></span> 화제 키워드 </span>
 </div>
 
 <%-- 화제 키워드 리스트 --%>

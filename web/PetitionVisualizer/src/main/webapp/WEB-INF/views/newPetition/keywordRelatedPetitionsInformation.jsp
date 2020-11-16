@@ -17,7 +17,7 @@
 
 <div class="make-circle-centered">
 <div class="circle">
-    <span class="bold-text" id="circleGraph">1281</span>
+    <span class="bold-text" id="circleGraph">-</span>
     <span>동의</span>
 </div>
 </div>

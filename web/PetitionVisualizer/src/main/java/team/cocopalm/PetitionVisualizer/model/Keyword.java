@@ -1,10 +1,20 @@
 package team.cocopalm.PetitionVisualizer.model;
 
+import java.util.List;
+
 public class Keyword {
 	private String keyword;
 	private int agree_sum;
 	private int post_sum;
 	private int score;
+	private List<IncrementOfKeyword> increment;
+	
+	public List<IncrementOfKeyword> getIncrement() {
+		return increment;
+	}
+	public void setIncrement(List<IncrementOfKeyword> increment) {
+		this.increment = increment;
+	}
 	public int getScore() {
 		return score;
 	}
@@ -32,6 +42,6 @@ public class Keyword {
 	@Override
 	public String toString() {
 		return "Keyword [keyword=" + keyword + ", agree_sum=" + agree_sum + ", post_sum=" + post_sum + ", score="
-				+ score + "]";
+				+ score + ", increment=" + increment + "]";
 	}
 }

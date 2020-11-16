@@ -1,9 +1,11 @@
 $(document).ready(async function () {
+  moment.locale("ko");
   var period;
   var keywordTop1,
     keywordTop2,
     keywordTop3,
     mostPostDay,
+    mostAgreeMoment,
     allNotExpiredPostCount,
     keywordNotExpiredAgreeSum,
     keywordNotExpiredPostCount;
@@ -56,13 +58,15 @@ $(document).ready(async function () {
       method: "GET",
     })
       .done((res) => {
-        mostPostDay = res.mostPostDay;
+        mostPostDay = moment(res.mostPostDay).format("ll");
+        mostAgreeMoment = moment(res.mostAgreeMoment).format("lll");
         allNotExpiredPostCount = res.allNotExpiredPostCount;
         keywordNotExpiredAgreeSum = res.keywordNotExpiredAgreeSum;
         keywordNotExpiredPostCount = res.keywordNotExpiredPostCount;
 
         // 메타 데이터 채우기
         $("#mostPostDay").text(mostPostDay);
+        $("#mostAgreeMoment").text(mostAgreeMoment);
         $("#allNotExpiredPostCount").text(
           allNotExpiredPostCount.format() + "건"
         );
@@ -105,6 +109,57 @@ $(document).ready(async function () {
 
   // 1번째 칸, 2번째 칸 그래프 채움 ==========================================
   var renderPeriodTop3KeywordsGraphs = async () => {
+    var getFullColumns = function (top1, top2, top3) {
+      var top = {};
+      top[1] = top1;
+      top[2] = top2;
+      top[3] = top3;
+      var aIsSmallerThanB = function (a, b) {
+        return a.increment.length < b.increment.length ? true : false;
+      };
+
+      var minOf = null,
+        minCollectTimeLength = 0;
+
+      if (aIsSmallerThanB(top1, top2) && aIsSmallerThanB(top1, top3)) minOf = 1;
+      else if (aIsSmallerThanB(top2, top1) && aIsSmallerThanB(top2, top3))
+        minOf = 2;
+      else minOf = 3;
+
+      minCollectTimeLength = top[minOf].increment.length;
+
+      var collect_times = ["collect_time"];
+      top[minOf].increment.forEach((e) => {
+        collect_times.push(e.collect_time);
+      });
+
+      var top1_agree_increments = [top1.keyword],
+        top2_agree_increments = [top2.keyword],
+        top3_agree_increments = [top3.keyword];
+      for (var i = 0; i < minCollectTimeLength; i++) {
+        top1_agree_increments.push(top1.increment[i].agree_increment);
+        top2_agree_increments.push(top2.increment[i].agree_increment);
+        top3_agree_increments.push(top3.increment[i].agree_increment);
+      }
+      return [
+        collect_times,
+        top1_agree_increments,
+        top2_agree_increments,
+        top3_agree_increments,
+      ];
+    };
+
+    var getEachColumns = function (keywordInfo) {
+      var collect_times = ["collect_time"];
+      var increments = [keywordInfo.keyword];
+      keywordInfo.increment.forEach((e) => {
+        collect_times.push(e.collect_time);
+        increments.push(e.agree_increment);
+      });
+
+      return [collect_times, increments];
+    };
+
     chart && chart.destroy();
     firstchart && firstchart.destroy();
     secondchart && secondchart.destroy();
@@ -112,11 +167,26 @@ $(document).ready(async function () {
 
     chart = bb.generate({
       data: {
-        columns: [
-          [keywordTop1.keyword, 30, 200, 100, 400, 150, 250],
-          [keywordTop2.keyword, 50, 20, 10, 40, 15, 25],
-          [keywordTop3.keyword, 130, 150, 200, 300, 200, 100],
-        ],
+        x: "collect_time",
+        columns: getFullColumns(keywordTop1, keywordTop2, keywordTop3),
+      },
+      axis: {
+        x: {
+          type: "category",
+          tick: {
+            show: false,
+            text: { show: false },
+          },
+        },
+        // y: {
+        //   tick: {
+        //     show: false,
+        //     text: { show: false },
+        //   },
+        // },
+      },
+      point: {
+        show: false,
       },
       color: {
         pattern: ["#6c5ce7", "#2b73e0", "#2da3e3"],
@@ -127,22 +197,18 @@ $(document).ready(async function () {
 
     firstchart = bb.generate({
       data: {
-        columns: [["코로나", 30, 200, 100, 400, 150, 250]],
+        x: "collect_time",
+        columns: getEachColumns(keywordTop1),
       },
       size: { height: 100, width: 160 },
       bindto: "#newPetitionTop1Chart",
       axis: {
         x: {
-          tick: {
-            show: false,
-            text: { show: false },
-          },
+          show: false,
+          type: "category",
         },
         y: {
-          tick: {
-            show: false,
-            text: { show: false },
-          },
+          show: false,
         },
       },
       legend: { show: false },
@@ -156,22 +222,18 @@ $(document).ready(async function () {
 
     secondchart = bb.generate({
       data: {
-        columns: [["이태원", 50, 20, 10, 40, 15, 25]],
+        x: "collect_time",
+        columns: getEachColumns(keywordTop2),
       },
       size: { height: 100, width: 160 },
       bindto: "#newPetitionTop2Chart",
       axis: {
         x: {
-          tick: {
-            show: false,
-            text: { show: false },
-          },
+          show: false,
+          type: "category",
         },
         y: {
-          tick: {
-            show: false,
-            text: { show: false },
-          },
+          show: false,
         },
       },
       legend: { show: false },
@@ -185,22 +247,18 @@ $(document).ready(async function () {
 
     thirdchart = bb.generate({
       data: {
-        columns: [["공무원", 130, 150, 200, 300, 200, 100]],
+        x: "collect_time",
+        columns: getEachColumns(keywordTop3),
       },
       size: { height: 100, width: 160 },
       bindto: "#newPetitionTop3Chart",
       axis: {
         x: {
-          tick: {
-            show: false,
-            text: { show: false },
-          },
+          show: false,
+          type: "category",
         },
         y: {
-          tick: {
-            show: false,
-            text: { show: false },
-          },
+          show: false,
         },
       },
       legend: { show: false },
@@ -216,7 +274,15 @@ $(document).ready(async function () {
 
   // 5번째 칸 채움 =========================================================
   var renderPeriodTop1Summary = async () => {
-    return;
+    await $.ajax({
+      url:
+        API.NEW_PETITION.SUMMARY + "?keyword=" + encodeURI(keywordTop1.keyword),
+      method: "GET",
+    })
+      .done((res) => {
+        $("#bestNewPetitionSummary").text(res.summary);
+      })
+      .fail((err) => console.log(err));
   };
   // =====================================================================
 
@@ -235,10 +301,9 @@ $(document).ready(async function () {
 
     var keywordArea = document.createElement("a");
     keywordArea.href = "/keyword/" + encodeURI(keywordInfo.keyword);
-    //keywordArea.className = "small-text bold-text is-black hover-purple";
+    keywordArea.className = "small-text bold-text is-black hover-purple";
     keywordArea.innerHTML = index + 1 + "&nbsp;&nbsp;" + keywordInfo.keyword;
-    keywordArea.className = "small-text bold-text is-purple";
-
+    // keywordArea.className = "small-text bold-text is-purple";
 
     var newLine = document.createElement("br");
 
@@ -251,14 +316,13 @@ $(document).ready(async function () {
     score.className = "small-text is-grey";
     score.innerHTML = keywordInfo.score;
 
-    wrapper.append(keywordArea,newLine, scoreBar, score);
+    wrapper.append(keywordArea, newLine, scoreBar, score);
     rankingArea.append(wrapper);
   });
 
   // 렌더링 호출
   var renderBy = async (periodVal) => {
     period = periodVal;
-    console.log(period);
 
     // 버튼 CSS
     $("#period-set-day").removeClass("is-outlined");

@@ -1,6 +1,7 @@
 $(document).ready(async function () {
   var newsList = null;
   var newsIndex = 0;
+  var chart;
 
   // 키워드에 대한 정보가 존재하는지 먼저 살핀 후 진행
   await $.ajax({
@@ -15,25 +16,66 @@ $(document).ready(async function () {
     })
     .fail((err) => console.log(err));
 
-  //
-  var chart = bb.generate({
-    size: { height: 240 },
-    data: {
-      columns: [
-        ["동의", 130, 89, 165, 278, 70, 206, 137, 62, 282, 210, 54, 223],
-        ["청원", 54, 84, 28, 177, 69, 57, 174, 8, 130, 187, 76, 188],
-      ],
-      types: {
-        동의: "line",
-        청원: "area",
-      },
-      colors: {
-        동의: "#6c5ce7",
-        청원: "#aaaaaa",
-      },
-    },
-    bindto: "#newPetitionsKeywordChart",
-  });
+  // 그래프 렌더링
+  var renderPeriodIncrement = function (period) {
+    chart && chart.destroy();
+    $.ajax({
+      url: API.KEYWORD.INCREMENT + "?keyword=" + keyword + "&period=" + period,
+      method: "GET",
+    })
+      .done((res) => {
+        var getEachColumns = function () {
+          var collect_times = ["collect_time"];
+          var post_increments = ["청원"];
+          var agree_increments = ["동의"];
+          res.forEach((e) => {
+            collect_times.push(e.collect_time);
+            post_increments.push(e.post_increment);
+            agree_increments.push(e.agree_increment);
+          });
+
+          return [collect_times, post_increments, agree_increments];
+        };
+
+        chart = bb.generate({
+          size: { height: 240 },
+          data: {
+            x: "collect_time",
+            columns: getEachColumns(),
+            types: {
+              동의: "line",
+              청원: "area",
+            },
+            colors: {
+              동의: "#6c5ce7",
+              청원: "#aaaaaa",
+            },
+            axes: {
+              청원: "y2",
+              동의: "y",
+            },
+          },
+          point: {
+            show: false,
+          },
+          axis: {
+            x: {
+              type: "category",
+              tick: {
+                text: {
+                  show: false,
+                },
+              },
+            },
+            y2: {
+              show: true,
+            },
+          },
+          bindto: "#newPetitionsKeywordChart",
+        });
+      })
+      .fail((err) => console.log(err));
+  };
 
   // 카테고리 번호를 카테고리명으로 변환하는 용도
   const CATEGORY_NAME = {
@@ -170,6 +212,9 @@ $(document).ready(async function () {
           "href",
           getPetionURL(res[0].post_id)
         );
+      res[0] &&
+        res[0].summary &&
+        $("#mostAgreeNewPetitionSummary").text(res[0].summary);
       // 반환 값이 존재하면 만료 청원 표시
       res[1] && res[1].title && $("#mostAgreeOldPetition").text(res[1].title);
       res[1] &&
@@ -178,6 +223,9 @@ $(document).ready(async function () {
           "href",
           getPetionURL(res[1].post_id)
         );
+      res[1] &&
+        res[1].summary &&
+        $("#mostAgreeOldPetitionSummary").text(res[1].summary);
     })
     .fail((err) => console.log(err));
 
@@ -222,7 +270,6 @@ $(document).ready(async function () {
   var prevNews = () => {
     if (newsList == null) return;
     newsIndex = (newsIndex - 3 + newsList.length) % newsList.length;
-    console.log(newsIndex, newsList.length);
     setNews();
   };
 
@@ -230,7 +277,6 @@ $(document).ready(async function () {
   var nextNews = () => {
     if (newsList == null) return;
     newsIndex = (newsIndex + 3) % newsList.length;
-    console.log(newsIndex);
     setNews();
   };
 
@@ -249,4 +295,39 @@ $(document).ready(async function () {
       setNews();
     })
     .fail((err) => console.log(err));
+
+  // 렌더링 호출
+  var renderBy = (periodVal) => {
+    period = periodVal;
+
+    // 버튼 CSS
+    $("#period-set-day").removeClass("is-outlined");
+    $("#period-set-week").removeClass("is-outlined");
+    $("#period-set-month").removeClass("is-outlined");
+
+    switch (period) {
+      case "DAY":
+        $("#period-set-week").addClass("is-outlined");
+        $("#period-set-month").addClass("is-outlined");
+        break;
+      case "WEEK":
+        $("#period-set-month").addClass("is-outlined");
+        $("#period-set-day").addClass("is-outlined");
+        break;
+      case "MONTH":
+        $("#period-set-week").addClass("is-outlined");
+        $("#period-set-day").addClass("is-outlined");
+        break;
+      default:
+        break;
+    }
+
+    renderPeriodIncrement(period); // 1번째 칸 채움
+  };
+
+  $("#period-set-day").on("click", () => renderBy("DAY"));
+  $("#period-set-week").on("click", () => renderBy("WEEK"));
+  $("#period-set-month").on("click", () => renderBy("MONTH"));
+
+  renderBy("DAY");
 });

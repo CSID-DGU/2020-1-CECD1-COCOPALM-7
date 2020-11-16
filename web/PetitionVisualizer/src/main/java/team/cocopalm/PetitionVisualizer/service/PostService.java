@@ -27,11 +27,15 @@ public class PostService {
 		return mapper.test(keyword);
 	}
 	
-	public List<Post> selectRelatedPetitions(String keyword) throws Exception {
+	public List<Post> getRelatedPetitions(String keyword) throws Exception {
 		return mapper.selectRelatedPetitions(keyword);
 	}
 	
-	public Post selectBestCategoryPetition(int categoryId) throws Exception {
+	public Post getBestCategoryPetition(int categoryId) throws Exception {
 		return mapper.selectBestCategoryPetition(categoryId);
+	}
+	
+	public Post getSummaryOfBestNewPetiton(String keyword) throws Exception {
+		return mapper.selectSummaryOfBestNewPetiton(keyword);
 	}
 }

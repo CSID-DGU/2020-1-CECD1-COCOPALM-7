@@ -17,4 +17,5 @@ public interface PostMapper {
     public String test(@Param("keyword") String keyword) throws Exception;
     public List<Post> selectRelatedPetitions(@Param("keyword") String keyword) throws Exception;
     public Post selectBestCategoryPetition(@Param("categoryId") int categoryId) throws Exception;
+    public Post selectSummaryOfBestNewPetiton(@Param("keyword") String keyword) throws Exception;
 }

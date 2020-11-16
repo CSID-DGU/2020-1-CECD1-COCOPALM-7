@@ -21,12 +21,12 @@
 		
 		<br><br>
 		<a href="#" class="bold-text is-purple keywordTop1"></a>
-		<span>의 경우 해당 기간 중 </span>
+		<span>의 경우 만료 이전 청원 기준</span>
 		<div class="has-text-centered bold-text">게시물이 가장 많이 올라온 날</div>
 		<div class="has-text-centered"><span id="mostPostDay"></span></div>
 		
 		<div class="has-text-centered bold-text">사람들이 가장 많이 청원에 동의한 순간</div>
-		<div class="has-text-centered">(개발중)</div>
+		<div class="has-text-centered" id="mostAgreeMoment"></div>
 	</div>
 
 

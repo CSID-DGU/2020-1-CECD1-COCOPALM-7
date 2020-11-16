@@ -38,51 +38,65 @@
 		LIMIT 1;
     </select> 
     
+    <select id="keywordMostAgreeMoment" resultType="Map">
+    	SELECT collect_time AS mostAgreeMoment
+		FROM increment_of_keyword
+		WHERE keyword = #{keyword} 
+			AND collect_time BETWEEN DATE_SUB(NOW(), INTERVAL 1 MONTH) AND NOW()
+		ORDER BY agree_increment DESC
+		LIMIT 1;
+    </select>
+    
+    
+    
     <select id="selectKeywordTop3ByDay" resultType="Keyword">
-    	SELECT nk.keyword AS keyword, MAX(krih.score) AS score
+    	SELECT nk.keyword AS keyword, SUM(krih.score) AS score
 		FROM (
 			SELECT DISTINCT pk.keyword FROM post AS p
 			INNER JOIN post_keyword AS pk
 			ON p.post_id = pk.post_id
 				AND p.is_new = 1
+				AND pk.keyword NOT IN ('청원')
 		) AS nk
 		INNER JOIN keyword_ranking_in_hour krih
 		ON nk.keyword = krih.keyword
 			AND krih.collect_time BETWEEN DATE_SUB(NOW(), INTERVAL 1 DAY) AND NOW()
 		GROUP BY nk.keyword
-		ORDER BY score DESC
+		ORDER BY score DESC, keyword DESC
 		LIMIT 3;
     </select>
     
     <select id="selectKeywordTop3ByWeek" resultType="Keyword">
-    	SELECT nk.keyword AS keyword, MAX(krih.score) AS score
+    	SELECT nk.keyword AS keyword, SUM(krih.score) AS score
 		FROM (
 			SELECT DISTINCT pk.keyword FROM post AS p
 			INNER JOIN post_keyword AS pk
 			ON p.post_id = pk.post_id
 				AND p.is_new = 1
+				AND pk.keyword NOT IN ('청원')
 		) AS nk
 		INNER JOIN keyword_ranking_in_hour krih
 		ON nk.keyword = krih.keyword
 			AND krih.collect_time BETWEEN DATE_SUB(NOW(), INTERVAL 1 WEEK) AND NOW()
 		GROUP BY nk.keyword
-		ORDER BY score DESC
+		ORDER BY score DESC, keyword DESC
 		LIMIT 3;
     </select>
     
     <select id="selectKeywordTop3ByMonth" resultType="Keyword">
-    	SELECT nk.keyword AS keyword, MAX(krih.score) AS score
+    	SELECT nk.keyword AS keyword, SUM(krih.score) AS score
 		FROM (
 			SELECT DISTINCT pk.keyword FROM post AS p
 			INNER JOIN post_keyword AS pk
 			ON p.post_id = pk.post_id
 				AND p.is_new = 1
+				AND pk.keyword NOT IN ('청원')
 		) AS nk
 		INNER JOIN keyword_ranking_in_hour krih
 		ON nk.keyword = krih.keyword
 			AND krih.collect_time BETWEEN DATE_SUB(NOW(), INTERVAL 1 MONTH) AND NOW()
 		GROUP BY nk.keyword
-		ORDER BY score DESC
+		ORDER BY score DESC, keyword DESC
 		LIMIT 3;
     </select>
     
@@ -95,6 +109,7 @@
 		) pc
 		INNER JOIN post_keyword pk
 		ON pc.post_id = pk.post_id
+			AND pk.keyword NOT IN ('청원')
 		GROUP BY pk.keyword
 		ORDER BY post_sum DESC
 		LIMIT 1;
@@ -109,41 +124,110 @@
 		) pc
 		INNER JOIN post_keyword pk
 		ON pc.post_id = pk.post_id
+			AND pk.keyword NOT IN ('청원')
 		GROUP BY pk.keyword
 		ORDER BY agree_sum DESC
 		LIMIT 1;
     </select>
     
     <select id="selectRanking" resultType="Keyword">
-    	SELECT nk.keyword AS keyword, MAX(krih.score) AS score
+    	SELECT nk.keyword AS keyword, SUM(krih.score) AS score
 		FROM (
 			SELECT DISTINCT pk.keyword FROM post AS p
 			INNER JOIN post_keyword AS pk
 			ON p.post_id = pk.post_id
 				AND p.is_new = 1
+				AND pk.keyword NOT IN ('청원')
 		) AS nk
 		INNER JOIN keyword_ranking_in_hour krih
 		ON nk.keyword = krih.keyword
 			AND krih.collect_time BETWEEN DATE_SUB(NOW(), INTERVAL 1 HOUR) AND NOW()
 		GROUP BY nk.keyword
-		ORDER BY score DESC
+		ORDER BY score DESC, keyword DESC
 		LIMIT 10;
     </select>
     
     <select id="selectRankingByCategoryDay" resultType="Keyword">
-    	SELECT nk.keyword AS keyword, MAX(krih.score) AS score
+    	SELECT nk.keyword AS keyword, SUM(krih.score) AS score
 		FROM (
 			SELECT DISTINCT pk.keyword FROM post AS p
 			INNER JOIN post_keyword AS pk
 			ON p.post_id = pk.post_id
 				AND p.is_new = 1
 				AND p.category_id = #{categoryId}
+				AND pk.keyword NOT IN ('청원')
 		) AS nk
 		INNER JOIN keyword_ranking_in_hour krih
 		ON nk.keyword = krih.keyword
 			AND krih.collect_time BETWEEN DATE_SUB(NOW(), INTERVAL 1 DAY) AND NOW()
 		GROUP BY nk.keyword
-		ORDER BY score DESC
+		ORDER BY score DESC, keyword DESC
 		LIMIT 10;
+    </select>
+    
+    <select id="selectRankingByCategoryHour" resultType="Keyword">
+    	SELECT nk.keyword AS keyword, SUM(krih.score) AS score
+		FROM (
+			SELECT DISTINCT pk.keyword FROM post AS p
+			INNER JOIN post_keyword AS pk
+			ON p.post_id = pk.post_id
+				AND p.is_new = 1
+				AND p.category_id = #{categoryId}
+				AND pk.keyword NOT IN ('청원')
+		) AS nk
+		INNER JOIN keyword_ranking_in_hour krih
+		ON nk.keyword = krih.keyword
+			AND krih.collect_time BETWEEN DATE_SUB(NOW(), INTERVAL 1 HOUR) AND NOW()
+		GROUP BY nk.keyword
+		ORDER BY score DESC, keyword DESC
+		LIMIT 10;
+    </select>
+    
+    <select id="selectIncrementOfKeywordByDay" resultType="IncrementOfKeyword">
+    	SELECT 
+			keyword, 
+		    CONCAT(LEFT(collect_time, 13), ':00') as collect_time, 
+		    <![CDATA[CASE WHEN agree_increment < 0 THEN 0 ELSE agree_increment END AS agree_increment,]]>
+			<![CDATA[CASE WHEN post_increment < 0 THEN 0 ELSE post_increment END AS post_increment]]>
+		FROM increment_of_keyword
+		WHERE keyword = #{keyword}
+			AND collect_time BETWEEN DATE_SUB(NOW(), INTERVAL 1 DAY) AND NOW()
+		ORDER BY LEFT(collect_time, 13) ASC
+    </select>
+    
+    <select id="selectIncrementOfKeywordByWeek" resultType="IncrementOfKeyword">
+    	SELECT rnge.keyword, rnge.collect_time_range as collect_time, rnge.agree_increment, rnge.post_increment
+		FROM (
+			SELECT keyword, 
+				CASE WHEN
+						RIGHT(collect_time, 8) BETWEEN '00:00:00' AND '05:59:59' THEN CONCAT(LEFT(collect_time, 10), ', 00-05')
+					WHEN
+						RIGHT(collect_time, 8) BETWEEN '06:00:00' AND '11:59:59' THEN CONCAT(LEFT(collect_time, 10), ', 06-11')
+					WHEN
+						RIGHT(collect_time, 8) BETWEEN '12:00:00' AND '17:59:59' THEN CONCAT(LEFT(collect_time, 10), ', 12-17')
+					ELSE CONCAT(LEFT(collect_time, 10), ', 18-23') END AS collect_time_range,
+				<![CDATA[SUM(CASE WHEN agree_increment < 0 THEN 0 ELSE agree_increment END) AS agree_increment,]]> 
+				<![CDATA[SUM(CASE WHEN post_increment < 0 THEN 0 ELSE post_increment END) AS post_increment]]>
+			FROM increment_of_keyword
+			WHERE keyword = #{keyword}
+				AND collect_time BETWEEN DATE_SUB(NOW(), INTERVAL 1 WEEK) AND NOW()
+			GROUP BY collect_time_range
+		    ORDER BY collect_time_range ASC
+		) AS rnge;
+    </select>
+    
+    <select id="selectIncrementOfKeywordByMonth" resultType="IncrementOfKeyword">
+    	SELECT by_day.keyword, by_day.collect_day AS collect_time, by_day.agree_increment, by_day.post_increment
+        FROM (SELECT 
+				keyword, 
+				LEFT(collect_time, 10) as collect_day, 
+				<![CDATA[SUM(CASE WHEN agree_increment < 0 THEN 0 ELSE agree_increment END) AS agree_increment,]]>
+				<![CDATA[SUM(CASE WHEN post_increment < 0 THEN 0 ELSE post_increment END) AS post_increment]]>
+			FROM increment_of_keyword
+			WHERE keyword = #{keyword}
+				AND collect_time BETWEEN DATE_SUB(NOW(), INTERVAL 1 MONTH) AND NOW()
+			GROUP BY collect_day
+			ORDER BY collect_day ASC
+		) by_day;
     </select>
 </mapper>   

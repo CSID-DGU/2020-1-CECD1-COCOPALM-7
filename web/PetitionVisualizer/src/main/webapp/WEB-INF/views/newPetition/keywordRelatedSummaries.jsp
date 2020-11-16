@@ -26,8 +26,6 @@
 
 <div class="has-text-centered is-grey">
     <span>❝</span><br/>
-    여기에 문서를 요약한 결과가 들어갑니다! 문서를 약 3줄 정도로 요약할 생각입니다. 
-
-    요약 된 내용을 통해 국민들의 의견이 어떤지 빠르게 확인할 수 있을 것으로 기대됩니다.
+    <span id="bestNewPetitionSummary">-</span>
     <br/><span>❞</span>
 </div>

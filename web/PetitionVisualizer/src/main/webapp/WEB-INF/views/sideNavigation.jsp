@@ -20,13 +20,5 @@
       <li><span>카테고리</span></li>
     </ul>
   </a>
-  <%-- 재생 버튼을 아래에 배치하기 위한 div --%>
-  <div style="flex: 1;"></div>
-  <a href="#">
-    <ul>
-      <li><i class="fas fa-sign-in-alt"></i></li>
-      <li><span>로그인</span></li>
-    </ul>
-  </a>
 </div>
 <%--------------------------------------------------------%>
