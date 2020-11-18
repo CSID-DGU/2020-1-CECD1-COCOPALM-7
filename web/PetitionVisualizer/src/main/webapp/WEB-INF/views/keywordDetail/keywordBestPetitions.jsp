@@ -36,5 +36,5 @@
 </div>
 
 <div class="margin-bottom">
-    <span class="is-grey" id="mostAgreeOldPetitionSummary">-</span>
+    <span class="is-grey" id="mostAgreeOldPetitionSummary">데이터 없음</span>
 </div>

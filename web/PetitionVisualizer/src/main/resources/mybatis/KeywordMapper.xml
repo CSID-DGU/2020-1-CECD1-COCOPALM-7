@@ -9,10 +9,8 @@
     </select>
     
     <select id="getCountAllNotExpiredPost" resultType="Map">
-    	SELECT COUNT(DISTINCT p.post_id) AS allNotExpiredPostCount
-		FROM post_keyword pk
-		INNER JOIN post p
-		ON pk.post_id = p.post_id AND p.is_new = '1'
+       SELECT COUNT(*) AS allNotExpiredPostCount
+      FROM post WHERE is_new = '1'
     </select>
     
     <select id="getAggrKeywordNotExpiredPost" resultType="Map">
