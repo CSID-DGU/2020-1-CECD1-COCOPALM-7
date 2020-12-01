@@ -114,29 +114,39 @@ $(document).ready(async function () {
       top[1] = top1;
       top[2] = top2;
       top[3] = top3;
-      var aIsSmallerThanB = function (a, b) {
-        return a.increment.length < b.increment.length ? true : false;
+      var aIsBiggerThanB = function (a, b) {
+        return a.increment.length > b.increment.length ? true : false;
       };
 
-      var minOf = null,
-        minCollectTimeLength = 0;
+      var maxOf,
+        maxCollectTimeLength = 0;
 
-      if (aIsSmallerThanB(top1, top2) && aIsSmallerThanB(top1, top3)) minOf = 1;
-      else if (aIsSmallerThanB(top2, top1) && aIsSmallerThanB(top2, top3))
-        minOf = 2;
-      else minOf = 3;
+      if (aIsBiggerThanB(top1, top2) && aIsBiggerThanB(top1, top3)) maxOf = 1;
+      else if (aIsBiggerThanB(top2, top1) && aIsBiggerThanB(top2, top3))
+        maxOf = 2;
+      else maxOf = 3;
 
-      minCollectTimeLength = top[minOf].increment.length;
+      maxCollectTimeLength = top[maxOf].increment.length;
 
       var collect_times = ["collect_time"];
-      top[minOf].increment.forEach((e) => {
+      top[maxOf].increment.forEach((e) => {
         collect_times.push(e.collect_time);
       });
 
       var top1_agree_increments = [top1.keyword],
         top2_agree_increments = [top2.keyword],
         top3_agree_increments = [top3.keyword];
-      for (var i = 0; i < minCollectTimeLength; i++) {
+
+      // 날짜 맞추기 - 최근 시간대는 항상 존재하므로 비어있다면 앞 쪽이 비어있음
+      for (var i = 0; i < maxCollectTimeLength - top1.increment.length; i++)
+        top1_agree_increments.push(0);
+      for (var i = 0; i < maxCollectTimeLength - top2.increment.length; i++)
+        top2_agree_increments.push(0);
+      for (var i = 0; i < maxCollectTimeLength - top3.increment.length; i++)
+        top3_agree_increments.push(0);
+
+      // 데이터 채우기
+      for (var i = 0; i < maxCollectTimeLength; i++) {
         top1_agree_increments.push(top1.increment[i].agree_increment);
         top2_agree_increments.push(top2.increment[i].agree_increment);
         top3_agree_increments.push(top3.increment[i].agree_increment);
